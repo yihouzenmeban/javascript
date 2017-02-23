@@ -19,16 +19,16 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
   1. [字符串](#strings)
   1. [函数](#functions)
   1. [箭头函数](#arrow-functions)
-  1. [构造函数](#constructors)
+  1. [类 & 构造函数](#classes--constructors)
   1. [模块](#modules)
   1. [Iterators & Generators ](#iterators-and-generators)
   1. [属性](#properties)
   1. [变量](#variables)
-  1. [提升](#hoisting)
+  1. [作用域提升](#hoisting)
   1. [比较运算符 & 等号](#comparison-operators--equality)
   1. [代码块](#blocks)
   1. [注释](#comments)
-  1. [空白](#whitespace)
+  1. [空格](#whitespace)
   1. [逗号](#commas)
   1. [分号](#semicolons)
   1. [类型转换](#type-casting--coercion)
@@ -37,7 +37,7 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
   1. [事件](#events)
   1. [jQuery](#jquery)
   1. [ECMAScript 5 兼容性](#ecmascript-5-compatibility)
-  1. [ECMAScript 6 编码规范](#ecmascript-6-styles)
+  1. [ECMAScript 6 (ES 2015+) 编码规范](#ecmascript-6-es-2015-styles)
   1. [测试](#testing)
   1. [性能](#performance)
   1. [资源](#resources)
@@ -49,9 +49,10 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
   1. [License](#license)
 
 <a name="types"></a>
-##  类型 
+##  类型
 
-  - [1.1](#1.1) <a name='1.1'></a> **基本类型**: 直接存取基本类型。
+  <a name="types--primitives"></a><a name="1.1"></a>
+  - [1.1](#types--primitives) **基本类型**: 直接存取基本类型。
 
     + `字符串`
     + `数值`
@@ -911,7 +912,7 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
   - [13.4](#13.4) <a name='13.4'></a> 在你需要的地方给变量赋值，但请把它们放在一个合理的位置。
 
   > 为什么？`let` 和 `const` 是块级作用域而不是函数作用域。
-  
+
     ```javascript
     // good
     function() {
@@ -963,7 +964,7 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
   - [14.1](#14.1) <a name='14.1'></a> `var` 声明会被提升至该作用域的顶部，但它们赋值不会提升。`let` 和 `const` 被赋予了一种称为「[暂时性死区（Temporal Dead Zones, TDZ）](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let#Temporal_dead_zone_and_errors_with_let)」的概念。这对于了解为什么 [type of 不再安全](http://es-discourse.com/t/why-typeof-is-no-longer-safe/15)相当重要。
 
     ```javascript
-    // 我们知道这样运行不了 
+    // 我们知道这样运行不了
     // （假设 notDefined 不是全局变量）
     function example() {
       console.log(notDefined); // => throws a ReferenceError

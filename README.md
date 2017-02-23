@@ -400,32 +400,34 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
 <a name="destructuring"></a>
 ## 解构
 
-  - [5.1](#5.1) <a name='5.1'></a> 使用解构存取和使用多属性对象。
+  <a name="destructuring--object"></a><a name="5.1"></a>
+  - [5.1](#destructuring--object) 使用解构存取和使用多属性对象。jscs: [`requireObjectDestructuring`](http://jscs.info/rule/requireObjectDestructuring)
 
   > 为什么？因为解构能减少临时引用属性。
 
     ```javascript
     // bad
     function getFullName(user) {
-      const firstName = user.firstName;
-      const lastName = user.lastName;
+        const firstName = user.firstName;
+        const lastName = user.lastName;
 
-      return `${firstName} ${lastName}`;
+        return `${firstName} ${lastName}`;
     }
 
     // good
     function getFullName(obj) {
-      const { firstName, lastName } = obj;
-      return `${firstName} ${lastName}`;
+        const { firstName, lastName } = obj;
+        return `${firstName} ${lastName}`;
     }
 
     // best
     function getFullName({ firstName, lastName }) {
-      return `${firstName} ${lastName}`;
+        return `${firstName} ${lastName}`;
     }
     ```
 
-  - [5.2](#5.2) <a name='5.2'></a> 对数组使用解构赋值。
+  <a name="destructuring--array"></a><a name="5.2"></a>
+  - [5.2](#destructuring--array) 对数组使用解构赋值。jscs: [`requireArrayDestructuring`](http://jscs.info/rule/requireArrayDestructuring)
 
     ```javascript
     const arr = [1, 2, 3, 4];
@@ -438,14 +440,16 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
     const [first, second] = arr;
     ```
 
-  - [5.3](#5.3) <a name='5.3'></a> 需要回传多个值时，使用对象解构，而不是数组解构。
+  <a name="destructuring--object-over-array"></a><a name="5.3"></a>
+  - [5.3](#destructuring--object-over-array) 需要回传多个值时，使用对象解构，而不是数组解构。jscs: [`disallowArrayDestructuringReturn`](http://jscs.info/rule/disallowArrayDestructuringReturn)
+
   > 为什么？增加属性或者改变排序不会改变调用时的位置。
 
     ```javascript
     // bad
     function processInput(input) {
-      // then a miracle occurs
-      return [left, right, top, bottom];
+        // then a miracle occurs
+        return [left, right, top, bottom];
     }
 
     // 调用时需要考虑回调数据的顺序。
@@ -453,8 +457,8 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
 
     // good
     function processInput(input) {
-      // then a miracle occurs
-      return { left, right, top, bottom };
+        // then a miracle occurs
+        return { left, right, top, bottom };
     }
 
     // 调用时只选择需要的数据

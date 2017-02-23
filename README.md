@@ -117,7 +117,7 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
         count += 1;
     }
 
-    // good, use the let.
+    // good
     let count = 1;
     if (true) {
         count += 1;
@@ -142,7 +142,8 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
 <a name="objects"></a>
 ## 对象
 
-  - [3.1](#3.1) <a name='3.1'></a> 使用字面值创建对象。
+  <a name="objects--no-new"></a><a name="3.1"></a>
+  - [3.1](#objects--no-new) 使用字面量创建对象。eslint: [`no-new-object`](http://eslint.cn/docs/rules/no-new-object)
 
     ```javascript
     // bad
@@ -152,109 +153,75 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
     const item = {};
     ```
 
-  - [3.2](#3.2) <a name='3.2'></a> 如果你的代码在浏览器环境下执行，别使用 [保留字](http://es5.github.io/#x7.6.1) 作为键值。这样的话在 IE8 不会运行。 [更多信息](https://github.com/airbnb/javascript/issues/61)。 但在 ES6 模块和服务器端中使用没有问题。
-
-    ```javascript
-    // bad
-    const superman = {
-      default: { clark: 'kent' },
-      private: true,
-    };
-
-    // good
-    const superman = {
-      defaults: { clark: 'kent' },
-      hidden: true,
-    };
-    ```
-
-  - [3.3](#3.3) <a name='3.3'></a> 使用同义词替换需要使用的保留字。
-
-    ```javascript
-    // bad
-    const superman = {
-      class: 'alien',
-    };
-
-    // bad
-    const superman = {
-      klass: 'alien',
-    };
-
-    // good
-    const superman = {
-      type: 'alien',
-    };
-    ```
-
-  <a name="es6-computed-properties"></a>
-  - [3.4](#3.4) <a name='3.4'></a> 创建有动态属性名的对象时，使用可被计算的属性名称。
+  <a name="es6-computed-properties"></a><a name="3.2"></a>
+  - [3.2](#3.2) 创建有动态属性名的对象时，使用可被计算的属性名称。
 
   > 为什么？因为这样可以让你在一个地方定义所有的对象属性。
 
     ```javascript
     function getKey(k) {
-      return `a key named ${k}`;
+        return `a key named ${k}`;
     }
 
     // bad
     const obj = {
-      id: 5,
-      name: 'San Francisco',
+        id: 5,
+        name: 'San Francisco',
     };
     obj[getKey('enabled')] = true;
 
     // good
     const obj = {
-      id: 5,
-      name: 'San Francisco',
-      [getKey('enabled')]: true,
+        id: 5,
+        name: 'San Francisco',
+        [getKey('enabled')]: true,
     };
     ```
 
-  <a name="es6-object-shorthand"></a>
-  - [3.5](#3.5) <a name='3.5'></a> 使用对象方法的简写。
+  <a name="es6-object-shorthand"></a><a name="3.3"></a>
+  - [3.3](#es6-object-shorthand) 使用对象方法的简写。eslint: [`object-shorthand`](http://eslint.cn/docs/rules/object-shorthand)
 
     ```javascript
     // bad
     const atom = {
-      value: 1,
+        value: 1,
 
-      addValue: function (value) {
-        return atom.value + value;
-      },
+        addValue: function (value) {
+            return atom.value + value;
+        },
     };
 
     // good
     const atom = {
-      value: 1,
+        value: 1,
 
-      addValue(value) {
-        return atom.value + value;
-      },
+        addValue(value) {
+            return atom.value + value;
+        },
     };
     ```
 
-  <a name="es6-object-concise"></a>
-  - [3.6](#3.6) <a name='3.6'></a> 使用对象属性值的简写。
+  <a name="es6-object-concise"></a><a name="3.4"></a>
+  - [3.4](#es6-object-concise) 使用对象属性值的简写。eslint: [`object-shorthand`](http://eslint.cn/docs/rules/object-shorthand)
 
-  > 为什么？因为这样更短更有描述性。
+  > 为什么？因为这样更简短而且更形象。
 
     ```javascript
     const lukeSkywalker = 'Luke Skywalker';
 
     // bad
     const obj = {
-      lukeSkywalker: lukeSkywalker,
+        lukeSkywalker: lukeSkywalker,
     };
 
     // good
     const obj = {
-      lukeSkywalker,
+        lukeSkywalker,
     };
     ```
 
-  - [3.7](#3.7) <a name='3.7'></a> 在对象属性声明前把简写的属性分组。
+  <a name="objects--grouped-shorthand"></a><a name="3.5"></a>
+  - [3.5](#objects--grouped-shorthand) 声明对象属性之前对简写的属性分组。
 
   > 为什么？因为这样能清楚地看出哪些属性使用了简写。
 
@@ -264,23 +231,64 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
 
     // bad
     const obj = {
-      episodeOne: 1,
-      twoJedisWalkIntoACantina: 2,
-      lukeSkywalker,
-      episodeThree: 3,
-      mayTheFourth: 4,
-      anakinSkywalker,
+        episodeOne: 1,
+        twoJedisWalkIntoACantina: 2,
+        lukeSkywalker,
+        episodeThree: 3,
+        mayTheFourth: 4,
+        anakinSkywalker,
     };
 
     // good
     const obj = {
-      lukeSkywalker,
-      anakinSkywalker,
-      episodeOne: 1,
-      twoJedisWalkIntoACantina: 2,
-      episodeThree: 3,
-      mayTheFourth: 4,
+        lukeSkywalker,
+        anakinSkywalker,
+        episodeOne: 1,
+        twoJedisWalkIntoACantina: 2,
+        episodeThree: 3,
+        mayTheFourth: 4,
     };
+    ```
+
+  <a name="objects--quoted-props"></a><a name="3.6"></a>
+  - [3.6](#objects--quoted-props) 对无效的标识符使用引号。eslint: [`quote-props`](http://eslint.cn/docs/rules/quote-props)
+
+    > Why? In general we consider it subjectively easier to read. It improves syntax highlighting, and is also more easily optimized by many JS engines.
+
+    ```javascript
+    // bad
+    const bad = {
+        'foo': 3,
+        'bar': 4,
+        'data-blah': 5,
+    };
+
+    // good
+    const good = {
+        foo: 3,
+        bar: 4,
+        'data-blah': 5,
+    };
+    ```
+
+  <a name="objects--rest-spread"><a name="3.7"></a>
+  - [3.7](#objects--rest-spread) 最好使用[`扩展语句`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_operator)代替 [`Object.assign`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Object/assign) 去浅拷贝对象，重新定义一个对象去得到一个排除确定属性的的新对象。
+
+    ```javascript
+    // very bad
+    const original = { a: 1, b: 2 };
+    const copy = Object.assign(original, { c: 3 }); // this mutates `original` ಠ_ಠ
+    delete copy.a; // so does this
+
+    // bad
+    const original = { a: 1, b: 2 };
+    const copy = Object.assign({}, original, { c: 3 }); // copy => { a: 1, b: 2, c: 3 }
+
+    // good
+    const original = { a: 1, b: 2 };
+    const copy = { ...original, c: 3 }; // copy => { a: 1, b: 2, c: 3 }
+
+    const { a, ...noA } = copy; // noA => { b: 2, c: 3 }
     ```
 
 **[⬆ 返回目录](#table-of-contents)**

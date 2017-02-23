@@ -143,7 +143,7 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
 ## 对象
 
   <a name="objects--no-new"></a><a name="3.1"></a>
-  - [3.1](#objects--no-new) 使用字面量创建对象。eslint: [`no-new-object`](http://eslint.cn/docs/rules/no-new-object)
+  - [3.1](#objects--no-new) 使用字面值创建对象。eslint: [`no-new-object`](http://eslint.cn/docs/rules/no-new-object)
 
     ```javascript
     // bad
@@ -272,7 +272,7 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
     ```
 
   <a name="objects--rest-spread"><a name="3.7"></a>
-  - [3.7](#objects--rest-spread) 最好使用[`扩展语句`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_operator)代替 [`Object.assign`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Object/assign) 去浅拷贝对象，重新定义一个对象去得到一个排除确定属性的的新对象。
+  - [3.7](#objects--rest-spread) 最好使用[`扩展运算符`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_operator)代替 [`Object.assign`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Object/assign) 去浅拷贝对象，重新定义一个对象去得到一个去除确定属性的的新对象。
 
     ```javascript
     // very bad
@@ -296,7 +296,8 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
 <a name="arrays"></a>
 ## 数组
 
-  - [4.1](#4.1) <a name='4.1'></a> 使用字面值创建数组。
+  <a name="arrays--literals"></a><a name="4.1"></a>
+  - [4.1](#arrays--literals) 使用字面值创建数组。eslint: [`no-array-constructor`](http://eslint.cn/docs/rules/no-array-constructor)
 
     ```javascript
     // bad
@@ -306,7 +307,8 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
     const items = [];
     ```
 
-  - [4.2](#4.2) <a name='4.2'></a> 向数组添加元素时使用 Arrary#push 替代直接赋值。
+  <a name="arrays--push"></a><a name="4.2"></a>
+  - [4.2](#arrays--push) 向数组添加元素时使用 [`Array.push`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Array/push) 替代直接赋值。
 
     ```javascript
     const someStack = [];
@@ -319,8 +321,8 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
     someStack.push('abracadabra');
     ```
 
-  <a name="es6-array-spreads"></a>
-  - [4.3](#4.3) <a name='4.3'></a> 使用拓展运算符 `...` 复制数组。
+  <a name="es6-array-spreads"></a><a name="4.3"></a>
+  - [4.3](#es6-array-spreads) <a name='4.3'></a> 使用扩展运算符 `...` 复制数组。
 
     ```javascript
     // bad
@@ -335,11 +337,62 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
     // good
     const itemsCopy = [...items];
     ```
-  - [4.4](#4.4) <a name='4.4'></a> 使用 Array#from 把一个类数组对象转换成数组。
+
+  <a name="arrays--from"></a><a name="4.4"></a>
+  - [4.4](#arrays--from) 使用 [`Array.from`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Array/from) 把一个类数组对象转换成数组。
 
     ```javascript
     const foo = document.querySelectorAll('.foo');
     const nodes = Array.from(foo);
+    ```
+
+  <a name="arrays--callback-return"></a><a name="4.5"></a>
+  - [4.5](#arrays--callback-return) 在数组方法的回调函数中使用 return 语句。如果函数部分只有一个单行申明例如 [8.2](#8.2)，return 也可以省略掉。 eslint: [`array-callback-return`](http://eslint.cn/docs/rules/array-callback-return)
+
+    ```javascript
+    // good
+    [1, 2, 3].map((x) => {
+        const y = x + 1;
+        return x * y;
+    });
+
+    // good
+    [1, 2, 3].map(x => x + 1);
+
+    // bad
+    const flat = {};
+    [[0, 1], [2, 3], [4, 5]].reduce((memo, item, index) => {
+        const flatten = memo.concat(item);
+        flat[index] = flatten;
+    });
+
+    // good
+    const flat = {};
+    [[0, 1], [2, 3], [4, 5]].reduce((memo, item, index) => {
+        const flatten = memo.concat(item);
+        flat[index] = flatten;
+        return flatten;
+    });
+
+    // bad
+    inbox.filter((msg) => {
+        const { subject, author } = msg;
+        if (subject === 'Mockingbird') {
+            return author === 'Harper Lee';
+        } else {
+            return false;
+        }
+    });
+
+    // good
+    inbox.filter((msg) => {
+        const { subject, author } = msg;
+        if (subject === 'Mockingbird') {
+            return author === 'Harper Lee';
+        }
+
+        return false;
+    });
     ```
 
 **[⬆ 返回目录](#table-of-contents)**

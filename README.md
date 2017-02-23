@@ -70,7 +70,7 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
     ```
 
   <a name="types--complex"></a><a name="1.2"></a>
-  - [1.2](#types--complex) **复杂类型**: 通过引用的方式存取复杂类型。
+  - [1.2](#types--complex) **复杂类型**: 通过引用的方式存取复杂类型。
 
     + `对象`
     + `数组`

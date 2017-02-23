@@ -90,9 +90,10 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
 <a name="references"></a>
 ## 引用
 
-  - [2.1](#2.1) <a name='2.1'></a> 对所有的引用使用 `const` ；不要使用 `var`。
+  <a name="references--prefer-const"></a><a name="2.1"></a>
+  - [2.1](#references--prefer-const) 对所有的引用使用 `const` ；不要使用 `var`。 eslint: [`prefer-const`](http://eslint.cn/docs/rules/prefer-const), [`no-const-assign`](http://eslint.cn/docs/rules/no-const-assign)
 
-  > 为什么？这能确保你无法对引用重新赋值，也不会导致出现 bug 或难以理解。
+  > 为什么？这能确保你无法对引用重新赋值，也不会导致 bug 和难以理解的代码。
 
     ```javascript
     // bad
@@ -104,31 +105,33 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
     const b = 2;
     ```
 
-  - [2.2](#2.2) <a name='2.2'></a> 如果你一定需要可变动的引用，使用 `let` 代替 `var`。
+  <a name="references--disallow-var"></a><a name="2.2"></a>
+  - [2.2](#references--disallow-var) 如果你需要对引用重新赋值，使用 `let` 代替 `var`。
 
-  > 为什么？因为  `let` 是块级作用域，而 `var` 是函数作用域。
+  > 为什么？因为 `let` 是块级作用域，而 `var` 是函数作用域。
 
     ```javascript
     // bad
     var count = 1;
     if (true) {
-      count += 1;
+        count += 1;
     }
 
     // good, use the let.
     let count = 1;
     if (true) {
-      count += 1;
+        count += 1;
     }
     ```
 
-  - [2.3](#2.3) <a name='2.3'></a> 注意 `let` 和 `const` 都是块级作用域。
+  <a name="references--block-scope"></a><a name="2.3"></a>
+  - [2.3](#references--block-scope) `let` 和 `const` 都是块级作用域。
 
     ```javascript
     // const 和 let 只存在于它们被定义的区块内。
     {
-      let a = 1;
-      const b = 1;
+        let a = 1;
+        const b = 1;
     }
     console.log(a); // ReferenceError
     console.log(b); // ReferenceError

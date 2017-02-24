@@ -1248,11 +1248,11 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
 ## Iterators and Generators
 
   <a name="iterators--nope"></a><a name="11.1"></a>
-  - [11.1](#iterators--nope) 不要使用 iterators。使用高阶函数例如 `map()` 和 `reduce()` 替代 `for-in` 和 `for-of`。eslint: [`no-iterator`](http://eslint.cn/docs/rules/no-iterator) [`no-restricted-syntax`](http://eslint.cn/docs/rules/no-restricted-syntax)
+  - [11.1](#iterators--nope) 不要使用 iterators。使用高阶函数替代 `for-in` 和 `for-of`。eslint: [`no-iterator`](http://eslint.cn/docs/rules/no-iterator) [`no-restricted-syntax`](http://eslint.cn/docs/rules/no-restricted-syntax)
 
     > 为什么？这加强了我们不变的规则。处理纯函数的回调值更易读，这比它带来的副作用更重要。
 
-    > 使用 `map()` / `every()` / `filter()` / `find()` / `findIndex()` / `reduce()` / `some()` / ... 去 iterate 数组，`Object.keys()` / `Object.values()` / `Object.entries()` 转换成数组以便于 iterate 对象。
+    > 使用 `map()` / `every()` / `filter()` / `find()` / `findIndex()` / `reduce()` / `some()` / ... iterate 数组，`Object.keys()` / `Object.values()` / `Object.entries()` 产生数组然后 iterate 对象。
 
     ```javascript
     const numbers = [1, 2, 3, 4, 5];
@@ -1273,7 +1273,6 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
     // best (use the functional force)
     const sum = numbers.reduce((total, num) => total + num, 0);
     sum === 15;
-    ```
 
     // bad
     const increasedByOne = [];

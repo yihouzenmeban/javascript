@@ -1664,8 +1664,11 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
 <a name="comparison-operators--equality"></a>
 ## 比较运算符 & 等号
 
-  - [15.1](#15.1) <a name='15.1'></a> 优先使用 `===` 和 `!==` 而不是 `==` 和 `!=`.
-  - [15.2](#15.2) <a name='15.2'></a> 条件表达式例如 `if` 语句通过抽象方法 `ToBoolean` 强制计算它们的表达式并且总是遵守下面的规则：
+  <a name="comparison--eqeqeq"></a><a name="15.1"></a>
+  - [15.1](#comparison--eqeqeq) 优先使用 `===` 和 `!==` 而不是 `==` 和 `!=`。eslint: [`eqeqeq`](http://eslint.cn/docs/rules/eqeqeq)
+
+  <a name="comparison--if"></a><a name="15.2"></a>
+  - [15.2](#comparison--if) 条件表达式例如 `if` 语句通过抽象方法 `ToBoolean` 强制计算它们的表达式并且总是遵守下面的规则：
 
     + **对象** 被计算为 **true**
     + **Undefined** 被计算为 **false**
@@ -1675,37 +1678,134 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
     + **字符串** 如果是空字符串 `''` 被计算为 **false**，否则为 **true**
 
     ```javascript
-    if ([0]) {
+    if ([0] && []) {
       // true
       // An array is an object, objects evaluate to true
     }
     ```
 
-  - [15.3](#15.3) <a name='15.3'></a> 使用简写。
+  <a name="comparison--shortcuts"></a><a name="15.3"></a>
+  - [15.3](#comparison--shortcuts) 使用简写，显示的字符串和数字对比除外。
 
     ```javascript
     // bad
-    if (name !== '') {
-      // ...stuff...
+    if (isValid === true) {
+        // ...
     }
 
     // good
-    if (name) {
-      // ...stuff...
+    if (isValid) {
+        // ...
     }
 
     // bad
-    if (collection.length > 0) {
-      // ...stuff...
+    if (name) {
+        // ...
     }
 
     // good
+    if (name !== '') {
+        // ...
+    }
+
+    // bad
     if (collection.length) {
-      // ...stuff...
+        // ...
+    }
+
+    // good
+    if (collection.length > 0) {
+        // ...
     }
     ```
 
-  - [15.4](#15.4) <a name='15.4'></a> 想了解更多信息，参考 Angus Croll 的 [Truth Equality and JavaScript](http://javascriptweblog.wordpress.com/2011/02/07/truth-equality-and-javascript/#more-2108)。
+  <a name="comparison--moreinfo"></a><a name="15.4"></a>
+  - [15.4](#comparison--moreinfo) 想了解更多信息，参考 Angus Croll 的 [Truth Equality and JavaScript](http://javascriptweblog.wordpress.com/2011/02/07/truth-equality-and-javascript/#more-2108)。
+
+  <a name="comparison--switch-blocks"></a><a name="15.5"></a>
+  - [15.5](#comparison--switch-blocks) 使用花括号创建块作用域来包裹 `case` 和 `default`，如果子句包含词法声明(例如：`let`, `const`, `function`, `class`)。eslint: [`no-case-declarations`](http://eslint.cn/docs/rules/no-case-declarations).
+
+    > 为什么? 因为词法声明在整个 switch 作用域都有效，但是它只有在运行到它定义的 `case` 语句时，才会进行初始化操作。这回导致很多 `case` 的子句定义同一个东西。
+
+    ```javascript
+    // bad
+    switch (foo) {
+        case 1:
+            let x = 1;
+            break;
+        case 2:
+            const y = 2;
+            break;
+        case 3:
+            function f() {
+              // ...
+            }
+            break;
+        default:
+            class C {}
+    }
+
+    // good
+    switch (foo) {
+        case 1: {
+            let x = 1;
+            break;
+        }
+        case 2: {
+            const y = 2;
+            break;
+        }
+        case 3: {
+            function f() {
+              // ...
+            }
+            break;
+        }
+        case 4:
+            bar();
+            break;
+        default: {
+            class C {}
+        }
+    }
+    ```
+
+  <a name="comparison--nested-ternaries"></a><a name="15.6"></a>
+  - [15.6](#comparison--nested-ternaries) 禁止使用嵌套的三元运算符。eslint rules: [`no-nested-ternary`](http://eslint.cn/docs/rules/no-nested-ternary).
+
+    ```javascript
+    // bad
+    const foo = maybe1 > maybe2
+        ? "bar"
+        : value1 > value2 ? "baz" : null;
+
+    // better
+    const maybeNull = value1 > value2 ? 'baz' : null;
+
+    const foo = maybe1 > maybe2
+        ? 'bar'
+        : maybeNull;
+
+    // best
+    const maybeNull = value1 > value2 ? 'baz' : null;
+
+    const foo = maybe1 > maybe2 ? 'bar' : maybeNull;
+    ```
+
+  <a name="comparison--unneeded-ternary"></a><a name="15.7"></a>
+  - [15.7](#comparison--unneeded-ternary) 不要使用无意义的三元运算符。eslint rules: [`no-unneeded-ternary`](http://eslint.cn/docs/rules/no-unneeded-ternary)
+
+    ```javascript
+    // bad
+    const foo = a ? a : b;
+    const bar = c ? true : false;
+    const baz = c ? false : true;
+
+    // good
+    const foo = a || b;
+    const bar = !!c;
+    const baz = !c;
+    ```
 
 **[⬆ 返回目录](#table-of-contents)**
 

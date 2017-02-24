@@ -1101,7 +1101,7 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
 ## 模块
 
   <a name="modules--use-them"></a><a name="10.1"></a>
-  - [10.1](#modules--use-them) 总是使用模组 (`import`/`export`) 而不是其他非标准模块系统。你可以编译为你喜欢的模块系统。
+  - [10.1](#modules--use-them) 总是使用 (`import`/`export`) 而不是其他非标准模块系统。你可以编译为你喜欢的模块系统。
 
     > 为什么？模块就是未来，让我们开始迈向未来吧。
 
@@ -1247,9 +1247,12 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
 <a name="iterators-and-generators"></a>
 ## Iterators and Generators
 
-  - [11.1](#11.1) <a name='11.1'></a> 不要使用 iterators。使用高阶函数例如 `map()` 和 `reduce()` 替代 `for-of`。
+  <a name="iterators--nope"></a><a name="11.1"></a>
+  - [11.1](#iterators--nope) 不要使用 iterators。使用高阶函数例如 `map()` 和 `reduce()` 替代 `for-in` 和 `for-of`。eslint: [`no-iterator`](http://eslint.cn/docs/rules/no-iterator) [`no-restricted-syntax`](http://eslint.cn/docs/rules/no-restricted-syntax)
 
-  > 为什么？这加强了我们不变的规则。处理纯函数的回调值更易读，这比它带来的副作用更重要。
+    > 为什么？这加强了我们不变的规则。处理纯函数的回调值更易读，这比它带来的副作用更重要。
+
+    > 使用 `map()` / `every()` / `filter()` / `find()` / `findIndex()` / `reduce()` / `some()` / ... 去 iterate 数组，`Object.keys()` / `Object.values()` / `Object.entries()` 转换成数组以便于 iterate 对象。
 
     ```javascript
     const numbers = [1, 2, 3, 4, 5];
@@ -1257,7 +1260,7 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
     // bad
     let sum = 0;
     for (let num of numbers) {
-      sum += num;
+        sum += num;
     }
 
     sum === 15;
@@ -1272,9 +1275,85 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
     sum === 15;
     ```
 
-  - [11.2](#11.2) <a name='11.2'></a> 现在还不要使用 generators。
+    // bad
+    const increasedByOne = [];
+    for (let i = 0; i < numbers.length; i++) {
+        increasedByOne.push(numbers[i] + 1);
+    }
 
-  > 为什么？因为它们现在还没法很好地编译到 ES5。 (译者注：目前(2016/03) Chrome 和 Node.js 的稳定版本都已支持 generators)
+    // good
+    const increasedByOne = [];
+    numbers.forEach(num => increasedByOne.push(num + 1));
+
+    // best (keeping it functional)
+    const increasedByOne = numbers.map(num => num + 1);
+    ```
+
+  <a name="generators--nope"></a><a name="11.2"></a>
+  - [11.2](#generators--nope) 现在还不要使用 generators。
+
+    > 为什么？因为它们现在还没法很好地编译到 ES5。 (译者注：目前(2016/03) Chrome 和 Node.js 的稳定版本都已支持 generators)
+
+  <a name="generators--spacing"><a name="11.3"></a>
+  - [11.3](#generators--spacing) 如果你一定要使用 generators，不想搭理 [11.2](#generators--nope), 请强制 generator 函数中 * 周围使用正确的空格。eslint: [`generator-star-spacing`](http://eslint.cn/docs/rules/generator-star-spacing)
+
+    > 为什么？`function` 和 `*` 同一个概念的关键字中的一部分， `*` 不是修饰 `function` 的， `function*` 和 `function` 不是一个东西.
+
+    ```javascript
+    // bad
+    function * foo() {
+        // ...
+    }
+
+    // bad
+    const bar = function * () {
+        // ...
+    };
+
+    // bad
+    const baz = function *() {
+        // ...
+    };
+
+    // bad
+    const quux = function*() {
+        // ...
+    };
+
+    // bad
+    function*foo() {
+        // ...
+    }
+
+    // bad
+    function *foo() {
+        // ...
+    }
+
+    // very bad
+    function
+    *
+    foo() {
+        // ...
+    }
+
+    // very bad
+    const wat = function
+    *
+    () {
+        // ...
+    };
+
+    // good
+    function* foo() {
+        // ...
+    }
+
+    // good
+    const foo = function* () {
+        // ...
+    };
+    ```
 
 **[⬆ 返回目录](#table-of-contents)**
 

@@ -1,5 +1,3 @@
-[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/airbnb/javascript?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
-
 # Airbnb JavaScript Style Guide() {
 
 **用更合理的方式写 JavaScript**
@@ -2329,81 +2327,135 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
 <a name="commas"></a>
 ## 逗号
 
-  - [19.1](#19.1) <a name='19.1'></a> 行首逗号：**不需要**。
+  <a name="commas--leading-trailing"></a><a name="19.1"></a>
+  - [19.1](#commas--leading-trailing) 行首逗号：**不需要**。eslint: [`comma-style`](http://eslint.cn/docs/rules/comma-style)
 
     ```javascript
     // bad
     const story = [
-        once
-      , upon
-      , aTime
+          once
+        , upon
+        , aTime
     ];
 
     // good
     const story = [
-      once,
-      upon,
-      aTime,
+        once,
+        upon,
+        aTime,
     ];
 
     // bad
     const hero = {
-        firstName: 'Ada'
-      , lastName: 'Lovelace'
-      , birthYear: 1815
-      , superPower: 'computers'
+          firstName: 'Ada'
+        , lastName: 'Lovelace'
+        , birthYear: 1815
+        , superPower: 'computers'
     };
 
     // good
     const hero = {
-      firstName: 'Ada',
-      lastName: 'Lovelace',
-      birthYear: 1815,
-      superPower: 'computers',
+        firstName: 'Ada',
+        lastName: 'Lovelace',
+        birthYear: 1815,
+        superPower: 'computers',
     };
     ```
 
-  - [19.2](#19.2) <a name='19.2'></a> 增加结尾的逗号: **需要**。
+  <a name="commas--dangling"></a><a name="19.2"></a>
+  - [19.2](#commas--dangling) 增加结尾的逗号: **需要**。eslint: [`comma-dangle`](http://eslint.cn/docs/rules/comma-dangle)
 
-  > 为什么? 这会让 git diffs 更干净。另外，像 babel 这样的转译器会移除结尾多余的逗号，也就是说你不必担心老旧浏览器的[尾逗号问题](es5/README.md#commas)。
+    > 为什么? 这会让 git diffs 更干净。另外，像 babel 这样的转译器会移除结尾多余的逗号，也就是说你不必担心老旧浏览器的[尾逗号问题](es5/README.md#commas)。
 
-    ```javascript
+    ```diff
     // bad - git diff without trailing comma
     const hero = {
          firstName: 'Florence',
     -    lastName: 'Nightingale'
     +    lastName: 'Nightingale',
-    +    inventorOf: ['coxcomb graph', 'modern nursing']
-    }
+    +    inventorOf: ['coxcomb chart', 'modern nursing']
+    };
 
     // good - git diff with trailing comma
     const hero = {
          firstName: 'Florence',
          lastName: 'Nightingale',
     +    inventorOf: ['coxcomb chart', 'modern nursing'],
-    }
+    };
+    ```
 
+    ```javascript
     // bad
     const hero = {
-      firstName: 'Dana',
-      lastName: 'Scully'
+        firstName: 'Dana',
+        lastName: 'Scully'
     };
 
     const heroes = [
-      'Batman',
-      'Superman'
+        'Batman',
+        'Superman'
     ];
 
     // good
     const hero = {
-      firstName: 'Dana',
-      lastName: 'Scully',
+        firstName: 'Dana',
+        lastName: 'Scully',
     };
 
     const heroes = [
-      'Batman',
-      'Superman',
+        'Batman',
+        'Superman',
     ];
+
+    // bad
+    function createHero(
+        firstName,
+        lastName,
+        inventorOf
+    ) {
+        // does nothing
+    }
+
+    // good
+    function createHero(
+        firstName,
+        lastName,
+        inventorOf,
+    ) {
+        // does nothing
+    }
+
+    // good (note that a comma must not appear after a "rest" element)
+    function createHero(
+        firstName,
+        lastName,
+        inventorOf,
+        ...heroArgs
+    ) {
+        // does nothing
+    }
+
+    // bad
+    createHero(
+        firstName,
+        lastName,
+        inventorOf
+    );
+
+    // good
+    createHero(
+        firstName,
+        lastName,
+        inventorOf,
+    );
+
+    // good (note that a comma must not appear after a "rest" element)
+    createHero(
+        firstName,
+        lastName,
+        inventorOf,
+        ...heroArgs
+    );
     ```
 
 **[⬆ 返回目录](#table-of-contents)**
@@ -2411,49 +2463,57 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
 <a name="semicolons"></a>
 ## 分号
 
-  - [20.1](#20.1) <a name='20.1'></a> **使用分号**
+  <a name="semicolons--required"></a><a name="20.1"></a>
+  - [20.1](#20.1) **使用分号** eslint: [`semi`](http://eslint.cn/docs/rules/semi)
 
     ```javascript
     // bad
     (function() {
-      const name = 'Skywalker'
-      return name
+        const name = 'Skywalker'
+        return name
     })()
 
     // good
     (() => {
-      const name = 'Skywalker';
-      return name;
+        const name = 'Skywalker';
+        return name;
     })();
 
     // good (防止函数在两个 IIFE 合并时被当成一个参数)
     ;(() => {
-      const name = 'Skywalker';
-      return name;
+        const name = 'Skywalker';
+        return name;
     })();
     ```
 
-    [Read more](http://stackoverflow.com/a/7365214/1712802).
+    [Read more](https://stackoverflow.com/questions/7365172/semicolon-before-self-invoking-function/7365214%237365214)
 
 **[⬆ 返回目录](#table-of-contents)**
 
 <a name="type-casting--coercion"></a>
 ## 类型转换
 
-  - [21.1](#21.1) <a name='21.1'></a> 在语句开始时执行类型转换。
-  - [21.2](#21.2) <a name='21.2'></a> 字符串：
+  <a name="coercion--explicit"></a><a name="21.1"></a>
+  - [21.1](#coercion--explicit) 在语句开始时执行类型转换。
+
+  <a name="coercion--strings"></a><a name="21.2"></a>
+  - [21.2](#coercion--strings) 字符串：
 
     ```javascript
-    //  => this.reviewScore = 9;
+    // => this.reviewScore = 9;
 
     // bad
-    const totalScore = this.reviewScore + '';
+    const totalScore = this.reviewScore + ''; // 调用 this.reviewScore.valueOf()
+
+    // bad
+    const totalScore = this.reviewScore.toString(); // 不能保证返回一个字符串
 
     // good
     const totalScore = String(this.reviewScore);
     ```
 
-  - [21.3](#21.3) <a name='21.3'></a> 对数字使用 `parseInt` 转换，并带上类型转换的基数。
+  <a name="coercion--numbers"></a><a name="21.3"></a>
+  - [21.3](#coercion--numbers) 对数字使用 `Number` 和 `parseInt` 转换，`parseInt` 要带上类型转换的基数。eslint: [`radix`](http://eslint.cn/docs/rules/radix)
 
     ```javascript
     const inputValue = '4';
@@ -2477,7 +2537,8 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
     const val = parseInt(inputValue, 10);
     ```
 
-  - [21.4](#21.4) <a name='21.4'></a> 如果因为某些原因 parseInt 成为你所做的事的瓶颈而需要使用位操作解决[性能问题](http://jsperf.com/coercion-vs-casting/3)时，留个注释说清楚原因和你的目的。
+  <a name="coercion--comment-deviations"></a><a name="21.4"></a>
+  - [21.4](#coercion--comment-deviations) 如果因为某些原因 parseInt 成为你所做的事的瓶颈而需要使用位操作解决[性能问题](http://jsperf.com/coercion-vs-casting/3)时，留个注释说清楚原因和你的目的。
 
     ```javascript
     // good
@@ -2488,7 +2549,8 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
     const val = inputValue >> 0;
     ```
 
-  - [21.5](#21.5) <a name='21.5'></a> **注:** 小心使用位操作运算符。数字会被当成 [64 位值](http://es5.github.io/#x4.3.19)，但是位操作运算符总是返回 32 位的整数（[参考](http://es5.github.io/#x11.7)）。位操作处理大于 32 位的整数值时还会导致意料之外的行为。[关于这个问题的讨论](https://github.com/airbnb/javascript/issues/109)。最大的 32 位整数是 2,147,483,647：
+  <a name="coercion--bitwise"></a><a name="21.5"></a>
+  - [21.5](#coercion--bitwise) **注:** 使用位操作运算符要小心。数字会被当成 [64 位值](http://es5.github.io/#x4.3.19)，但是位操作运算符总是返回 32 位的整数（[参考](http://es5.github.io/#x11.7)）。位操作处理大于 32 位的整数值时还会导致意料之外的行为。[关于这个问题的讨论](https://github.com/airbnb/javascript/issues/109)。最大的 32 位整数是 2,147,483,647：
 
     ```javascript
     2147483647 >> 0 //=> 2147483647
@@ -2496,7 +2558,8 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
     2147483649 >> 0 //=> -2147483647
     ```
 
-  - [21.6](#21.6) <a name='21.6'></a> 布尔:
+  <a name="coercion--booleans"></a><a name="21.6"></a>
+  - [21.6](#coercion--booleans) 布尔:
 
     ```javascript
     const age = 0;
@@ -2516,21 +2579,23 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
 <a name="naming-conventions"></a>
 ## 命名规则
 
-  - [22.1](#22.1) <a name='22.1'></a> 避免单字母命名。命名应具备描述性。
+  <a name="naming--descriptive"></a><a name="22.1"></a>
+  - [22.1](#naming--descriptive) 避免单字母命名。命名应具备描述性。eslint: [`id-length`](http://eslint.org/docs/rules/id-length)
 
     ```javascript
     // bad
     function q() {
-      // ...stuff...
+        // ...stuff...
     }
 
     // good
     function query() {
-      // ..stuff..
+        // ..stuff..
     }
     ```
 
-  - [22.2](#22.2) <a name='22.2'></a> 使用驼峰式命名对象、函数和实例。
+  <a name="naming--camelCase"></a><a name="22.2"></a>
+  - [22.2](#naming--camelCase) 使用驼峰式命名对象、函数和实例。eslint: [`camelcase`](http://eslint.cn/docs/rules/camelcase)
 
     ```javascript
     // bad
@@ -2543,89 +2608,110 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
     function thisIsMyFunction() {}
     ```
 
-  - [22.3](#22.3) <a name='22.3'></a> 使用帕斯卡式命名构造函数或类。
+  <a name="naming--PascalCase"></a><a name="22.3"></a>
+  - [22.3](#naming--PascalCase) 使用帕斯卡式命名（首字母大写）构造函数或类。eslint: [`new-cap`](http://eslint.cn/docs/rules/new-cap)
 
     ```javascript
     // bad
     function user(options) {
-      this.name = options.name;
+        this.name = options.name;
     }
 
     const bad = new user({
-      name: 'nope',
+        name: 'nope',
     });
 
     // good
     class User {
-      constructor(options) {
-        this.name = options.name;
-      }
+        constructor(options) {
+           this.name = options.name;
+        }
     }
 
     const good = new User({
-      name: 'yup',
+       name: 'yup',
     });
     ```
 
-  - [22.4](#22.4) <a name='22.4'></a> 使用下划线 `_` 开头命名私有属性。
+  <a name="naming--leading-underscore"></a><a name="22.4"></a>
+  - [22.4](#naming--leading-underscore) 不要使用下划线 `_` 开头或者结尾进行命名。eslint: [`no-underscore-dangle`](http://eslint.cn/docs/rules/no-underscore-dangle)
 
     ```javascript
     // bad
     this.__firstName__ = 'Panda';
     this.firstName_ = 'Panda';
-
-    // good
     this._firstName = 'Panda';
+
+    // good
+    this.firstName = 'Panda';
     ```
 
-  - [22.5](#22.5) <a name='22.5'></a> 别保存 `this` 的引用。使用箭头函数或 Function#bind。
+  <a name="naming--self-this"></a><a name="22.5"></a>
+  - [22.5](#naming--self-this) 别保存 `this` 的引用。使用箭头函数或 [Function#bind](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind)。
 
     ```javascript
     // bad
     function foo() {
-      const self = this;
-      return function() {
-        console.log(self);
-      };
+        const self = this;
+        return function() {
+          console.log(self);
+        };
     }
 
     // bad
     function foo() {
-      const that = this;
-      return function() {
-        console.log(that);
-      };
+        const that = this;
+        return function() {
+          console.log(that);
+        };
     }
 
     // good
     function foo() {
-      return () => {
-        console.log(this);
-      };
+        return () => {
+           console.log(this);
+        };
     }
     ```
 
-  - [22.6](#22.6) <a name='22.6'></a> 如果你的文件只输出一个类，那你的文件名必须和类名完全保持一致。
+  <a name="naming--filename-matches-export"></a><a name="22.6"></a>
+  - [22.6](#naming--filename-matches-export) 如果你的文件只输出一个类，那你的文件名必须和类名完全保持一致。
 
     ```javascript
-    // file contents
+    // file 1 contents
     class CheckBox {
-      // ...
+        // ...
     }
     export default CheckBox;
 
+    // file 2 contents
+    export default function fortyTwo() { return 42; }
+
+    // file 3 contents
+    export default function insideDirectory() {}
+
     // in some other file
     // bad
-    import CheckBox from './checkBox';
+    import CheckBox from './checkBox'; // PascalCase import/export, camelCase filename
+    import FortyTwo from './FortyTwo'; // PascalCase import/filename, camelCase export
+    import InsideDirectory from './InsideDirectory'; // PascalCase import/filename, camelCase export
 
     // bad
-    import CheckBox from './check_box';
+    import CheckBox from './check_box'; // PascalCase import/export, snake_case filename
+    import forty_two from './forty_two'; // snake_case import/filename, camelCase export
+    import inside_directory from './inside_directory'; // snake_case import, camelCase export
+    import index from './inside_directory/index'; // requiring the index file explicitly
+    import insideDirectory from './insideDirectory/index'; // requiring the index file explicitly
 
     // good
-    import CheckBox from './CheckBox';
+    import CheckBox from './CheckBox'; // PascalCase export/import/filename
+    import fortyTwo from './fortyTwo'; // camelCase export/import/filename
+    import insideDirectory from './insideDirectory'; // camelCase export/import/directory name/implicit "index"
+    // ^ supports both insideDirectory.js and insideDirectory/index.js
     ```
 
-  - [22.7](#22.7) <a name='22.7'></a> 当你导出默认的函数时使用驼峰式命名。你的文件名必须和函数名完全保持一致。
+  <a name="naming--camelCase-default-export"></a><a name="22.7"></a>
+  - [22.7](#naming--camelCase-default-export) 当你导出默认的函数时使用驼峰式命名。你的文件名必须和函数名完全保持一致。
 
     ```javascript
     function makeStyleGuide() {
@@ -2634,70 +2720,115 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
     export default makeStyleGuide;
     ```
 
-  - [22.8](#22.8) <a name='22.8'></a> 当你导出单例、函数库、空对象时使用帕斯卡式命名。
+  <a name="naming--PascalCase-singleton"></a><a name="22.8"></a>
+  - [22.8](#naming--PascalCase-singleton) 当你导出单例、函数库、空对象时使用帕斯卡式命名。
 
     ```javascript
     const AirbnbStyleGuide = {
-      es6: {
-      }
+        es6: {
+        }
     };
 
     export default AirbnbStyleGuide;
     ```
 
+  <a name="naming--Acronyms-and-Initialisms"><a name="22.9"></a></a>
+  - [22.9](#naming--Acronyms-and-Initialisms) 缩略词或者缩写的单词应该全部大写或者小写。
 
+    > 为什么？为了更好的可读性。
+
+    ```javascript
+    // bad
+    import SmsContainer from './containers/SmsContainer';
+
+    // bad
+    const HttpRequests = [
+        // ...
+    ];
+
+    // good
+    import SMSContainer from './containers/SMSContainer';
+
+    // good
+    const HTTPRequests = [
+        // ...
+    ];
+
+    // best
+    import TextMessageContainer from './containers/TextMessageContainer';
+
+    // best
+    const Requests = [
+        // ...
+    ];
+    ```
 **[⬆ 返回目录](#table-of-contents)**
 
 <a name="accessors"></a>
 ## 存取器
 
-  - [23.1](#23.1) <a name='23.1'></a> 属性的存取函数不是必须的。
-  - [23.2](#23.2) <a name='23.2'></a> 如果你需要存取函数时使用 `getVal()` 和 `setVal('hello')`。
+  <a name="accessors--not-required"></a><a name="23.1"></a>
+  - [23.1](#accessors--not-required) 属性的存取函数不是必须的。
+
+  <a name="accessors--no-getters-setters"></a><a name="23.2"></a>
+  - [23.2](#accessors--no-getters-setters) 不要使用 JavaScript `getters/setters`，因为它们会引起副作用，而且会导致代码很难测试，维护和阅读。如果创建获取函数，使用 getVal() 和 setVal('hello')。
 
     ```javascript
     // bad
-    dragon.age();
+    class Dragon {
+        get age() {
+          // ...
+        }
+
+        set age(value) {
+          // ...
+        }
+    }
 
     // good
-    dragon.getAge();
+    class Dragon {
+        getAge() {
+            // ...
+        }
 
-    // bad
-    dragon.age(25);
-
-    // good
-    dragon.setAge(25);
+        setAge(value) {
+            // ...
+        }
+    }
     ```
 
-  - [23.3](#23.3) <a name='23.3'></a> 如果属性是布尔值，使用 `isVal()` 或 `hasVal()`。
+  <a name="accessors--boolean-prefix"></a><a name="23.3"></a>
+  - [23.3](#accessors--boolean-prefix) 如果属性是布尔值，使用 `isVal()` 或 `hasVal()`。
 
     ```javascript
     // bad
     if (!dragon.age()) {
-      return false;
+        return false;
     }
 
     // good
     if (!dragon.hasAge()) {
-      return false;
+        return false;
     }
     ```
 
-  - [23.4](#23.4) <a name='23.4'></a> 创建 `get()` 和 `set()` 函数是可以的，但要保持一致。
+  <a name="accessors--consistent"></a><a name="23.4"></a>
+  - [23.4](#accessors--consistent) 创建 `get()` 和 `set()` 函数是可以的，但要保持一致。
 
     ```javascript
     class Jedi {
-      constructor(options = {}) {
-        const lightsaber = options.lightsaber || 'blue';
-        this.set('lightsaber', lightsaber);
-      }
+        constructor(options = {}) {
+            const lightsaber = options.lightsaber || 'blue';
+            this.set('lightsaber', lightsaber);
+        }
 
-      set(key, val) {
-        this[key] = val;
-      }
+        set(key, val) {
+            this[key] = val;
+        }
 
-      get(key) {
-        return this[key];
-      }
+        get(key) {
+            return this[key];
+        }
     }
     ```
 
@@ -2706,7 +2837,8 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
 <a name="events"></a>
 ## 事件
 
-  - [24.1](#24.1) <a name='24.1'></a> 当给事件附加数据时（无论是 DOM 事件还是私有事件），传入一个哈希而不是原始值。这样可以让后面的贡献者增加更多数据到事件数据而无需找出并更新事件的每一个处理器。例如，不好的写法：
+  <a name="events--hash"></a><a name="24.1"></a>
+  - [24.1](#events--hash) 当给事件附加数据时（无论是 DOM 事件还是私有事件），传入一个哈希而不是原始值。这样可以让后面的贡献者增加更多数据到事件数据而无需找出并更新事件的每一个处理器。例如：
 
     ```javascript
     // bad
@@ -2715,7 +2847,7 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
     ...
 
     $(this).on('listingUpdated', function(e, listingId) {
-      // do something with listingId
+        // do something with listingId
     });
     ```
 
@@ -2728,7 +2860,7 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
     ...
 
     $(this).on('listingUpdated', function(e, data) {
-      // do something with data.listingId
+        // do something with data.listingId
     });
     ```
 
@@ -2737,7 +2869,8 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
 
 ## jQuery
 
-  - [25.1](#25.1) <a name='25.1'></a> 使用 `$` 作为存储 jQuery 对象的变量名前缀。
+  <a name="jquery--dollar-prefix"></a><a name="25.1"></a>
+  - [25.1](#jquery--dollar-prefix) 使用 `$` 作为存储 jQuery 对象的变量名前缀。jscs: [`requireDollarBeforejQueryAssignment`](http://jscs.info/rule/requireDollarBeforejQueryAssignment)
 
     ```javascript
     // bad
@@ -2747,35 +2880,39 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
     const $sidebar = $('.sidebar');
     ```
 
-  - [25.2](#25.2) <a name='25.2'></a> 缓存 jQuery 查询。
+  <a name="jquery--cache"></a><a name="25.2"></a>
+  - [25.2](#jquery--cache) 缓存 jQuery 查询。
 
     ```javascript
     // bad
     function setSidebar() {
-      $('.sidebar').hide();
+        $('.sidebar').hide();
 
-      // ...stuff...
+        // ...stuff...
 
-      $('.sidebar').css({
-        'background-color': 'pink'
-      });
+        $('.sidebar').css({
+            'background-color': 'pink'
+        });
     }
 
     // good
     function setSidebar() {
-      const $sidebar = $('.sidebar');
-      $sidebar.hide();
+        const $sidebar = $('.sidebar');
+        $sidebar.hide();
 
-      // ...stuff...
+        // ...stuff...
 
-      $sidebar.css({
-        'background-color': 'pink'
-      });
+        $sidebar.css({
+            'background-color': 'pink'
+        });
     }
     ```
 
-  - [25.3](#25.3) <a name='25.3'></a> 对 DOM 查询使用层叠 `$('.sidebar ul')` 或 父元素 > 子元素 `$('.sidebar > ul')`。 [jsPerf](http://jsperf.com/jquery-find-vs-context-sel/16)
-  - [25.4](#25.4) <a name='25.4'></a> 对有作用域的 jQuery 对象查询使用 `find`。
+  <a name="jquery--queries"></a><a name="25.3"></a>
+  - [25.3](#jquery--queries) 对 DOM 查询使用层叠 `$('.sidebar ul')` 或 父元素 > 子元素 `$('.sidebar > ul')`。 [jsPerf](http://jsperf.com/jquery-find-vs-context-sel/16)
+
+  <a name="jquery--find"></a><a name="25.4"></a>
+  - [25.4](#jquery--find) <a name='25.4'></a> 对有作用域的 jQuery 对象查询使用 `find`。
 
     ```javascript
     // bad
@@ -2799,14 +2936,16 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
 <a name="ecmascript-5-compatibility"></a>
 ## ECMAScript 5 兼容性
 
-  - [26.1](#26.1) <a name='26.1'></a> 参考 [Kangax](https://twitter.com/kangax/) 的 ES5 [兼容性](http://kangax.github.com/es5-compat-table/).
+  <a name="es5-compat--kangax"></a><a name="26.1"></a>
+  - [26.1](#es5-compat--kangax) 参考 [Kangax](https://twitter.com/kangax/) 的 ES5 [兼容性](http://kangax.github.com/es5-compat-table/).
 
 **[⬆ 返回目录](#table-of-contents)**
 
 <a name="ecmascript-6-styles"></a>
 ## ECMAScript 6 规范
 
-  - [27.1](#27.1) <a name='27.1'></a> 以下是链接到 ES6 的各个特性的列表。
+  <a name="es6-styles"></a><a name="27.1"></a>
+  - [27.1](#es6-styles) 以下是链接到 ES6 的各个特性的列表。
 
 1. [Arrow Functions](#arrow-functions)
 1. [Classes](#constructors)
@@ -2822,18 +2961,10 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
 1. [Iterators and Generators](#iterators-and-generators)
 1. [Modules](#modules)
 
-**[⬆ 返回目录](#table-of-contents)**
+  <a name="tc39-proposals"><a name="27.2"></a>
+  - [27.2](#tc39-proposals) 不要使用还没有到达第三步的 [TC39 proposals](https://github.com/tc39/proposals)。
 
-<a name="testing"></a>
-## 测试
-
-  - [28.1](#28.1) <a name='28.1'></a> **Yup.**
-
-    ```javascript
-    function() {
-      return true;
-    }
-    ```
+    > 为什么? [它们还不是最终方案](https://tc39.github.io/process-document/)，可能之后会被修改。
 
 **[⬆ 返回目录](#table-of-contents)**
 
@@ -2927,6 +3058,7 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
 
 **Podcasts**
 
+  - [JavaScript Air](https://javascriptair.com/)
   - [JavaScript Jabber](http://devchat.tv/js-jabber/)
 
 

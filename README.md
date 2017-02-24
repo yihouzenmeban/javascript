@@ -1865,7 +1865,8 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
 <a name="comments"></a>
 ## 注释
 
-  - [17.1](#17.1) <a name='17.1'></a> 使用 `/** ... */` 作为多行注释。包含描述、指定所有参数和返回值的类型和值。
+  <a name="comments--multiline"></a><a name="17.1"></a>
+  - [17.1](#comments--multiline) 使用 `/** ... */` 作为多行注释。
 
     ```javascript
     // bad
@@ -1876,28 +1877,26 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
     // @return {Element} element
     function make(tag) {
 
-      // ...stuff...
+        // ...
 
-      return element;
+        return element;
     }
 
     // good
     /**
      * make() returns a new element
-     * based on the passed in tag name
-     *
-     * @param {String} tag
-     * @return {Element} element
+     * based on the passed-in tag name
      */
     function make(tag) {
 
-      // ...stuff...
+        // ...
 
-      return element;
+        return element;
     }
     ```
 
-  - [17.2](#17.2) <a name='17.2'></a> 使用 `//` 作为单行注释。在评论对象上面另起一行使用单行注释。在注释前插入空行。
+  <a name="comments--singleline"></a><a name="17.2"></a>
+  - [17.2](#comments--singleline) 使用 `//` 作为单行注释。在评论对象上面另起一行使用单行注释。在注释前插入空行。
 
     ```javascript
     // bad
@@ -1909,45 +1908,93 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
 
     // bad
     function getType() {
-      console.log('fetching type...');
-      // set the default type to 'no type'
-      const type = this._type || 'no type';
+        console.log('fetching type...');
+        // set the default type to 'no type'
+        const type = this._type || 'no type';
 
-      return type;
+        return type;
     }
 
     // good
     function getType() {
-      console.log('fetching type...');
+        console.log('fetching type...');
 
+        // set the default type to 'no type'
+        const type = this._type || 'no type';
+
+        return type;
+    }
+
+    // also good
+    function getType() {
       // set the default type to 'no type'
-      const type = this._type || 'no type';
+      const type = this.type || 'no type';
 
       return type;
     }
     ```
 
-  - [17.3](#17.3) <a name='17.3'></a> 给注释增加 `FIXME` 或 `TODO` 的前缀可以帮助其他开发者快速了解这是一个需要复查的问题，或是给需要实现的功能提供一个解决方式。这将有别于常见的注释，因为它们是可操作的。使用 `FIXME -- need to figure this out` 或者 `TODO -- need to implement`。
-
-  - [17.4](#17.4) <a name='17.4'></a> 使用 `// FIXME`: 标注问题。
+  <a name="comments--spaces"></a><a name="17.3"></a>
+  - [17.3](#comments--spaces) 在所有的注释内容开始之前添加一个空格使它更容易被阅读。eslint: [`spaced-comment`](http://eslint.cn/docs/rules/spaced-comment)
 
     ```javascript
-    class Calculator {
-      constructor() {
-        // FIXME: shouldn't use a global here
-        total = 0;
-      }
+    // bad
+    //is current tab
+    const active = true;
+
+    // good
+    // is current tab
+    const active = true;
+
+    // bad
+    /**
+     *make() returns a new element
+     *based on the passed-in tag name
+     */
+    function make(tag) {
+
+        // ...
+
+        return element;
+    }
+
+    // good
+    /**
+     * make() returns a new element
+     * based on the passed-in tag name
+     */
+    function make(tag) {
+
+        // ...
+
+        return element;
     }
     ```
 
-  - [17.5](#17.5) <a name='17.5'></a> 使用 `// TODO`: 标注问题的解决方式。
+  <a name="comments--actionitems"></a><a name="17.4"></a>
+  - [17.4](#comments--actionitems) 给注释增加 `FIXME` 或 `TODO` 的前缀可以帮助其他开发者快速了解这是一个需要复查的问题，或是给需要实现的功能提供一个解决方式。这将有别于常见的注释，因为它们是可操作的。使用 `FIXME -- need to figure this out` 或者 `TODO -- need to implement`。
+
+  <a name="comments--fixme"></a><a name="17.5"></a>
+  - [17.5](#comments--fixme) 使用 `// FIXME`: 标注问题。
 
     ```javascript
     class Calculator {
-      constructor() {
-        // TODO: total should be configurable by an options param
-        this.total = 0;
-      }
+        constructor() {
+            // FIXME: shouldn't use a global here
+            total = 0;
+        }
+    }
+    ```
+
+  <a name="comments--todo"></a><a name="17.6"></a>
+  - [17.6](#comments--todo) 使用 `// TODO`: 标注问题的解决方式。
+
+    ```javascript
+    class Calculator {
+        constructor() {
+            // TODO: total should be configurable by an options param
+            this.total = 0;
+        }
     }
     ```
 

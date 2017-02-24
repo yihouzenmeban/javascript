@@ -93,7 +93,7 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
   <a name="references--prefer-const"></a><a name="2.1"></a>
   - [2.1](#references--prefer-const) 对所有的引用使用 `const` ；不要使用 `var`。 eslint: [`prefer-const`](http://eslint.cn/docs/rules/prefer-const), [`no-const-assign`](http://eslint.cn/docs/rules/no-const-assign)
 
-  > 为什么？这能确保你无法对引用重新赋值，也不会导致 bug 和难以理解的代码。
+    > 为什么？这能确保你无法对引用重新赋值，也不会导致 bug 和难以理解的代码。
 
     ```javascript
     // bad
@@ -108,7 +108,7 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
   <a name="references--disallow-var"></a><a name="2.2"></a>
   - [2.2](#references--disallow-var) 如果你需要对引用重新赋值，使用 `let` 代替 `var`。
 
-  > 为什么？因为 `let` 是块级作用域，而 `var` 是函数作用域。
+    > 为什么？因为 `let` 是块级作用域，而 `var` 是函数作用域。
 
     ```javascript
     // bad
@@ -156,7 +156,7 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
   <a name="es6-computed-properties"></a><a name="3.2"></a>
   - [3.2](#3.2) 创建有动态属性名的对象时，使用可被计算的属性名称。
 
-  > 为什么？因为这样可以让你在一个地方定义所有的对象属性。
+    > 为什么？因为这样可以让你在一个地方定义所有的对象属性。
 
     ```javascript
     function getKey(k) {
@@ -204,7 +204,7 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
   <a name="es6-object-concise"></a><a name="3.4"></a>
   - [3.4](#es6-object-concise) 使用对象属性值的简写。eslint: [`object-shorthand`](http://eslint.cn/docs/rules/object-shorthand)
 
-  > 为什么？因为这样更简短而且更形象。
+    > 为什么？因为这样更简短而且更形象。
 
     ```javascript
     const lukeSkywalker = 'Luke Skywalker';
@@ -223,7 +223,7 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
   <a name="objects--grouped-shorthand"></a><a name="3.5"></a>
   - [3.5](#objects--grouped-shorthand) 声明对象属性之前对简写的属性分组。
 
-  > 为什么？因为这样能清楚地看出哪些属性使用了简写。
+    > 为什么？因为这样能清楚地看出哪些属性使用了简写。
 
     ```javascript
     const anakinSkywalker = 'Anakin Skywalker';
@@ -403,7 +403,7 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
   <a name="destructuring--object"></a><a name="5.1"></a>
   - [5.1](#destructuring--object) 使用解构存取和使用多属性对象。jscs: [`requireObjectDestructuring`](http://jscs.info/rule/requireObjectDestructuring)
 
-  > 为什么？因为解构能减少临时引用属性。
+    > 为什么？因为解构能减少临时引用属性。
 
     ```javascript
     // bad
@@ -443,7 +443,7 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
   <a name="destructuring--object-over-array"></a><a name="5.3"></a>
   - [5.3](#destructuring--object-over-array) 需要回传多个值时，使用对象解构，而不是数组解构。jscs: [`disallowArrayDestructuringReturn`](http://jscs.info/rule/disallowArrayDestructuringReturn)
 
-  > 为什么？增加属性或者改变排序不会改变调用时的位置。
+    > 为什么？增加属性或者改变排序不会改变调用时的位置。
 
     ```javascript
     // bad
@@ -506,7 +506,7 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
   <a name="es6-template-literals"></a><a name="6.3"></a>
   - [6.3](#es6-template-literals) 程序化生成字符串时，使用模板字符串代替字符串连接。
 
-  > 为什么？模板字符串更为简洁，更具可读性。
+    > 为什么？模板字符串更为简洁，更具可读性。
 
     ```javascript
     // bad
@@ -555,7 +555,7 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
   <a name="functions--declarations"></a><a name="7.1"></a>
   - [7.1](#functions--declarations) 使用函数表达式代替函数声明。
 
-  > 为什么？函数声明会把整个函数提升（hoisted），这意味着我们很容易在函数定义的位置之前去引用这个函数，会影响到代码的可维护性和可读性。
+    > 为什么？函数声明会把整个函数提升（hoisted），这意味着我们很容易在函数定义的位置之前去引用这个函数，会影响到代码的可维护性和可读性。
 
     ```javascript
     // bad
@@ -618,7 +618,7 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
   <a name="es6-rest"></a><a name="7.6"></a>
   - [7.6](#es6-rest) <a name='7.6'></a> 不要使用 `arguments`。可以选择 rest 语法 `...` 替代。
 
-  > 为什么？使用 `...` 能明确你要传入的参数。另外 rest 参数是一个真正的数组，而 `arguments` 是一个类数组。
+    > 为什么？使用 `...` 能明确你要传入的参数。另外 rest 参数是一个真正的数组，而 `arguments` 是一个类数组。
 
     ```javascript
     // bad
@@ -664,19 +664,19 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
   <a name="functions--default-side-effects"></a><a name="7.8"></a>
   - [7.8](#functions--default-side-effects) 直接给函数参数赋值时需要避免副作用。
 
-  > 为什么？因为这样的写法让人感到很困惑。
+    > 为什么？因为这样的写法让人感到很困惑。
 
-  ```javascript
-  var b = 1;
-  // bad
-  function count(a = b++) {
-      console.log(a);
-  }
-  count();  // 1
-  count();  // 2
-  count(3); // 3
-  count();  // 3
-  ```
+    ```javascript
+    var b = 1;
+    // bad
+    function count(a = b++) {
+        console.log(a);
+    }
+    count();  // 1
+    count();  // 2
+    count(3); // 3
+    count();  // 3
+    ```
 
   <a name="functions--defaults-last"></a><a name="7.9"></a>
   - [7.9](#functions--defaults-last) 把默认的参数放在最后面。
@@ -793,7 +793,7 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
     new Date(...[2016, 8, 5]);
     ```
 
-  <a name="functions--signature-invocation-indentation"></a>
+  <a name="functions--signature-invocation-indentation"><a name="7.15"></a>
   - [7.15](#functions--signature-invocation-indentation) 有多个参数的函数在调用或者定义的时候，如果要使用换行缩进，应该和其它多行列表使用一个标准：每一条语句占用一行，在最后加上一个逗号。
 
     ```javascript
@@ -935,7 +935,7 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
   <a name="constructors--use-class"></a><a name="9.1"></a>
   - [9.1](#constructors--use-class) 总是使用 `class`。避免直接操作 `prototype` 。
 
-  > 为什么? 因为 `class` 语法更为简洁更易读。
+    > 为什么? 因为 `class` 语法更为简洁更易读。
 
     ```javascript
     // bad
@@ -965,7 +965,7 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
   <a name="constructors--extends"></a><a name="9.2"></a>
   - [9.2](#constructors--extends) 使用 `extends` 继承。
 
-  > 为什么？因为 `extends` 是一个内建的原型继承方法并且不会破坏 `instanceof`。
+    > 为什么？因为 `extends` 是一个内建的原型继承方法并且不会破坏 `instanceof`。
 
     ```javascript
     // bad
@@ -1072,7 +1072,7 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
     }
     ```
 
-    <a name="classes--no-duplicate-members"></a>
+    <a name="classes--no-duplicate-members"><a name="9.6"></a>
   - [9.6](#classes--no-duplicate-members) 不允许类成员中有重复的名称。 eslint: [`no-dupe-class-members`](http://eslint.cn/docs/rules/no-dupe-class-members)
 
     > 为什么？重复的声明类成员都会被最后一个覆盖。
@@ -1100,9 +1100,10 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
 <a name="modules"></a>
 ## 模块
 
-  - [10.1](#10.1) <a name='10.1'></a> 总是使用模组 (`import`/`export`) 而不是其他非标准模块系统。你可以编译为你喜欢的模块系统。
+  <a name="modules--use-them"></a><a name="10.1"></a>
+  - [10.1](#modules--use-them) 总是使用模组 (`import`/`export`) 而不是其他非标准模块系统。你可以编译为你喜欢的模块系统。
 
-  > 为什么？模块就是未来，让我们开始迈向未来吧。
+    > 为什么？模块就是未来，让我们开始迈向未来吧。
 
     ```javascript
     // bad
@@ -1118,9 +1119,10 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
     export default es6;
     ```
 
-  - [10.2](#10.2) <a name='10.2'></a> 不要使用通配符 import。
+  <a name="modules--no-wildcard"></a><a name="10.2"></a>
+  - [10.2](#modules--no-wildcard) 不要使用通配符 import。
 
-  > 为什么？这样能确保你只有一个默认 export。
+    > 为什么？这样能确保你只有一个默认 `export`。
 
     ```javascript
     // bad
@@ -1130,9 +1132,10 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
     import AirbnbStyleGuide from './AirbnbStyleGuide';
     ```
 
-  - [10.3](#10.3) <a name='10.3'></a>不要从 import 中直接 export。
+  <a name="modules--no-export-from-import"></a><a name="10.3"></a>
+  - [10.3](#modules--no-export-from-import) 不要从 `import` 中直接 export。
 
-  > 为什么？虽然一行代码简洁明了，但让 import 和 export 各司其职让事情能保持一致。
+    > 为什么？虽然一行代码简洁明了，但让 import 和 export 各司其职让事情能保持一致。
 
     ```javascript
     // bad
@@ -1143,6 +1146,100 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
     // filename es6.js
     import { es6 } from './AirbnbStyleGuide';
     export default es6;
+    ```
+
+  <a name="modules--no-duplicate-imports"><a name="10.4"></a>
+  - [10.4](#modules--no-duplicate-imports) 相同路径只使用一次 `import`。eslint: [`no-duplicate-imports`](http://eslint.cn/docs/rules/no-duplicate-imports)
+
+    > 为什么？同一个路径使用多个 `import` 会使代码变的难以维护。
+
+    ```javascript
+    // bad
+    import foo from 'foo';
+    // … some other imports … //
+    import { named1, named2 } from 'foo';
+
+    // good
+    import foo, { named1, named2 } from 'foo';
+
+    // good
+    import foo, {
+        named1,
+        named2,
+    } from 'foo';
+    ```
+
+  <a name="modules--no-mutable-exports"><a name="10.5"></a>
+  - [10.5](#modules--no-mutable-exports) 不要 `export` 可变的绑定。eslint: [`import/no-mutable-exports`](https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-mutable-exports.md)
+
+    ```javascript
+    // bad
+    let foo = 3;
+    export { foo };
+
+    // good
+    const foo = 3;
+    export { foo };
+    ```
+
+  <a name="modules--prefer-default-export"><a name="10.6"></a>
+  - [10.6](#modules--prefer-default-export) 在一个只有一个 export 的模块中，最好用默认 export 覆盖名字 export。eslint: [`import/prefer-default-export`](https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/prefer-default-export.md)
+
+    ```javascript
+    // bad
+    export function foo() {}
+
+    // good
+    export default function foo() {}
+    ```
+
+  <a name="modules--imports-first"><a name="10.7"></a>
+  - [10.7](#modules--imports-first) 把所有的 `import` 放在 no-import 声明之前。eslint: [`import/first`](https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/first.md)
+    > 为什么？因为 `import` 作用域提升，把它们放在最前面防止意外.
+
+    ```javascript
+    // bad
+    import foo from 'foo';
+    foo.init();
+
+    import bar from 'bar';
+
+    // good
+    import foo from 'foo';
+    import bar from 'bar';
+
+    foo.init();
+    ```
+
+  <a name="modules--multiline-imports-over-newlines"><a name="10.8"></a>
+  - [10.8](#modules--multiline-imports-over-newlines) 多行的 imports 应该和多行数组以及字面值对象一样的缩进规则。
+
+    ```javascript
+    // bad
+    import {longNameA, longNameB, longNameC, longNameD, longNameE} from 'path';
+
+    // good
+    import {
+        longNameA,
+        longNameB,
+        longNameC,
+        longNameD,
+        longNameE,
+    } from 'path';
+    ```
+
+  <a name="modules--no-webpack-loader-syntax"><a name="10.9"></a>
+  - [10.9](#modules--no-webpack-loader-syntax) 禁止 Webpack 的加载语法出现在模块 import 语句中。eslint: [`import/no-webpack-loader-syntax`](https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-webpack-loader-syntax.md)
+    > 为什么？在 imports 中使用 Webpack 语法会导致最后打包的代码重复，最好在 `webpack.config.js` 中使用加载语法。
+
+    ```javascript
+    // bad
+    import fooSass from 'css!sass!foo.scss';
+    import barCss from 'style!css!bar.css';
+
+    // good
+    import fooSass from 'foo.scss';
+    import barCss from 'bar.css';
     ```
 
 **[⬆ 返回目录](#table-of-contents)**

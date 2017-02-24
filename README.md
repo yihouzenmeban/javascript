@@ -1294,9 +1294,9 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
     > 为什么？因为它们现在还没法很好地编译到 ES5。 (译者注：目前(2016/03) Chrome 和 Node.js 的稳定版本都已支持 generators)
 
   <a name="generators--spacing"><a name="11.3"></a>
-  - [11.3](#generators--spacing) 如果你一定要使用 generators，不想搭理 [11.2](#generators--nope), 请强制 generator 函数中 * 周围使用正确的空格。eslint: [`generator-star-spacing`](http://eslint.cn/docs/rules/generator-star-spacing)
+  - [11.3](#generators--spacing) 如果你一定要使用 generators，不想搭理 [11.2](#generators--nope)，请强制 generator 函数中 * 周围使用正确的空格。eslint: [`generator-star-spacing`](http://eslint.cn/docs/rules/generator-star-spacing)
 
-    > 为什么？`function` 和 `*` 同一个概念的关键字中的一部分， `*` 不是修饰 `function` 的， `function*` 和 `function` 不是一个东西.
+    > 为什么？`function` 和 `*` 同一个概念的关键字中的一部分，`*` 不是修饰 `function` 的，`function*` 和 `function` 不是一个东西。
 
     ```javascript
     // bad
@@ -1359,12 +1359,13 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
 <a name="properties"></a>
 ## 属性
 
-  - [12.1](#12.1) <a name='12.1'></a> 使用 `.` 来访问对象的属性。
+  <a name="properties--dot"></a><a name="12.1"></a>
+  - [12.1](#properties--dot) 使用 `.` 来访问对象的属性。eslint: [`dot-notation`](http://eslint.cn/docs/rules/dot-notation)
 
     ```javascript
     const luke = {
-      jedi: true,
-      age: 28,
+        jedi: true,
+        age: 28,
     };
 
     // bad
@@ -1374,16 +1375,17 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
     const isJedi = luke.jedi;
     ```
 
-  - [12.2](#12.2) <a name='12.2'></a> 当通过变量访问属性时使用中括号 `[]`。
+  <a name="properties--bracket"></a><a name="12.2"></a>
+  - [12.2](#properties--bracket) 当通过变量访问属性时使用 `[]`。
 
     ```javascript
     const luke = {
-      jedi: true,
-      age: 28,
+        jedi: true,
+        age: 28,
     };
 
     function getProp(prop) {
-      return luke[prop];
+        return luke[prop];
     }
 
     const isJedi = getProp('jedi');

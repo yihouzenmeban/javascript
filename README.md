@@ -1771,7 +1771,7 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
     ```
 
   <a name="comparison--nested-ternaries"></a><a name="15.6"></a>
-  - [15.6](#comparison--nested-ternaries) 禁止使用嵌套的三元运算符。eslint rules: [`no-nested-ternary`](http://eslint.cn/docs/rules/no-nested-ternary).
+  - [15.6](#comparison--nested-ternaries) 禁止使用嵌套的三元运算符。eslint rules: [`no-nested-ternary`](http://eslint.cn/docs/rules/no-nested-ternary)
 
     ```javascript
     // bad
@@ -1812,19 +1812,20 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
 <a name="blocks"></a>
 ## 代码块
 
-  - [16.1](#16.1) <a name='16.1'></a> 使用大括号包裹所有的多行代码块。
+  <a name="blocks--braces"></a><a name="16.1"></a>
+  - [16.1](#blocks--braces) 使用大括号包裹所有的多行代码块。
 
     ```javascript
     // bad
     if (test)
-      return false;
+        return false;
 
     // good
     if (test) return false;
 
     // good
     if (test) {
-      return false;
+        return false;
     }
 
     // bad
@@ -1832,28 +1833,29 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
 
     // good
     function() {
-      return false;
+        return false;
     }
     ```
 
-  - [16.2](#16.2) <a name='16.2'></a> 如果通过 `if` 和 `else` 使用多行代码块，把 `else` 放在 `if` 代码块关闭括号的同一行。
+  <a name="blocks--cuddled-elses"></a><a name="16.2"></a>
+  - [16.2](#blocks--cuddled-elses) 如果通过 `if` 和 `else` 使用多行代码块，把 `else` 放在 `if` 代码块关闭括号的同一行。eslint: [`brace-style`](http://eslint.cn/docs/rules/brace-style)
 
     ```javascript
     // bad
     if (test) {
-      thing1();
-      thing2();
+        thing1();
+        thing2();
     }
     else {
-      thing3();
+        thing3();
     }
 
     // good
     if (test) {
-      thing1();
-      thing2();
+        thing1();
+        thing2();
     } else {
-      thing3();
+        thing3();
     }
     ```
 

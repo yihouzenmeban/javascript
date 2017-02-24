@@ -2003,12 +2003,13 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
 <a name="whitespace"></a>
 ## 空白
 
-  - [18.1](#18.1) <a name='18.1'></a> 使用 2 个空格作为缩进。
+  <a name="whitespace--spaces"></a><a name="18.1"></a>
+  - [18.1](#whitespace--spaces) 使用 4 个空格作为缩进。eslint: [`indent`](http://eslint.cn/docs/rules/indent)
 
     ```javascript
     // bad
     function() {
-    ∙∙∙∙const name;
+    ∙∙const name;
     }
 
     // bad
@@ -2018,37 +2019,39 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
 
     // good
     function() {
-    ∙∙const name;
+    ∙∙∙∙const name;
     }
     ```
 
-  - [18.2](#18.2) <a name='18.2'></a> 在花括号前放一个空格。
+  <a name="whitespace--before-blocks"></a><a name="18.2"></a>
+  - [18.2](#whitespace--before-blocks) 在花括号前放一个空格。
 
     ```javascript
     // bad
     function test(){
-      console.log('test');
+        console.log('test');
     }
 
     // good
     function test() {
-      console.log('test');
+        console.log('test');
     }
 
     // bad
     dog.set('attr',{
-      age: '1 year',
-      breed: 'Bernese Mountain Dog',
+        age: '1 year',
+        breed: 'Bernese Mountain Dog',
     });
 
     // good
     dog.set('attr', {
-      age: '1 year',
-      breed: 'Bernese Mountain Dog',
+        age: '1 year',
+        breed: 'Bernese Mountain Dog',
     });
     ```
 
-  - [18.3](#18.3) <a name='18.3'></a> 在控制语句（`if`、`while` 等）的小括号前放一个空格。在函数调用及声明中，不在函数的参数列表前加空格。
+  <a name="whitespace--around-keywords"></a><a name="18.3"></a>
+  - [18.3](#whitespace--around-keywords) 在控制语句（`if`、`while` 等）的小括号前放一个空格。在函数调用及声明中，不在函数的参数列表前加空格。eslint: [`keyword-spacing`](http://eslint.cn/docs/rules/keyword-spacing)
 
     ```javascript
     // bad
@@ -2072,7 +2075,8 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
     }
     ```
 
-  - [18.4](#18.4) <a name='18.4'></a> 使用空格把运算符隔开。
+  <a name="whitespace--infix-ops"></a><a name="18.4"></a>
+  - [18.4](#whitespace--infix-ops) 使用空格把运算符隔开。eslint: [`space-infix-ops`](http://eslint.cn/docs/rules/space-infix-ops)
 
     ```javascript
     // bad
@@ -2082,31 +2086,33 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
     const x = y + 5;
     ```
 
-  - [18.5](#18.5) <a name='18.5'></a> 在文件末尾插入一个空行。
+  <a name="whitespace--newline-at-end"></a><a name="18.5"></a>
+  - [18.5](#whitespace--newline-at-end) 在文件末尾插入一个空行。eslint: [`eol-last`](https://github.com/eslint/eslint/blob/master/docs/rules/eol-last.md)
 
     ```javascript
     // bad
-    (function(global) {
-      // ...stuff...
-    })(this);
+    import { es6 } from './AirbnbStyleGuide';
+        // ...
+    export default es6;
     ```
 
     ```javascript
     // bad
-    (function(global) {
-      // ...stuff...
-    })(this);↵
+    import { es6 } from './AirbnbStyleGuide';
+        // ...
+    export default es6;↵
     ↵
     ```
 
     ```javascript
     // good
-    (function(global) {
-      // ...stuff...
-    })(this);↵
+    import { es6 } from './AirbnbStyleGuide';
+        // ...
+    export default es6;↵
     ```
 
-  - [18.5](#18.5) <a name='18.5'></a> 在使用长方法链时进行缩进。使用前面的点 `.` 强调这是方法调用而不是新语句。
+  <a name="whitespace--chains"></a><a name="18.6"></a>
+  - [18.5](#whitespace--chains) 在使用长方法链时进行缩进（超过两个方法时）。使用前面的点 `.` 强调这是方法调用而不是新语句。eslint: [`newline-per-chained-call`](http://eslint.cn/docs/rules/newline-per-chained-call) [`no-whitespace-before-property`](http://eslint.cn/docs/rules/no-whitespace-before-property)
 
     ```javascript
     // bad
@@ -2114,74 +2120,209 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
 
     // bad
     $('#items').
-      find('.selected').
+        find('.selected').
         highlight().
         end().
-      find('.open').
+        find('.open').
         updateCount();
 
     // good
     $('#items')
-      .find('.selected')
+        .find('.selected')
         .highlight()
         .end()
-      .find('.open')
+        .find('.open')
         .updateCount();
 
     // bad
-    const leds = stage.selectAll('.led').data(data).enter().append('svg:svg').class('led', true)
+    const leds = stage.selectAll('.led').data(data).enter().append('svg:svg').classed('led', true)
         .attr('width', (radius + margin) * 2).append('svg:g')
-        .attr('transform', 'translate(' + (radius + margin) + ',' + (radius + margin) + ')')
+        .attr('transform', `translate(${radius + margin},${radius + margin})`)
         .call(tron.led);
 
     // good
     const leds = stage.selectAll('.led')
         .data(data)
-      .enter().append('svg:svg')
+        .enter().append('svg:svg')
         .classed('led', true)
         .attr('width', (radius + margin) * 2)
-      .append('svg:g')
-        .attr('transform', 'translate(' + (radius + margin) + ',' + (radius + margin) + ')')
+        .append('svg:g')
+        .attr('transform', `translate(${radius + margin},${radius + margin})`)
         .call(tron.led);
+
+    // good
+    const leds = stage.selectAll('.led').data(data);
     ```
 
-  - [18.6](#18.6) <a name='18.6'></a> 在块末和新语句前插入空行。
+  <a name="whitespace--after-blocks"></a><a name="18.7"></a>
+  - [18.6](#whitespace--after-blocks) 在块末和新语句前插入空行。
 
     ```javascript
     // bad
     if (foo) {
-      return bar;
+        return bar;
     }
     return baz;
 
     // good
     if (foo) {
-      return bar;
+        return bar;
     }
 
     return baz;
 
     // bad
     const obj = {
-      foo() {
-      },
-      bar() {
-      },
+        foo() {
+        },
+        bar() {
+        },
     };
     return obj;
 
     // good
     const obj = {
-      foo() {
-      },
+        foo() {
+        },
 
-      bar() {
-      },
+        bar() {
+        },
     };
 
     return obj;
+
+    // bad
+    const arr = [
+        function foo() {
+        },
+        function bar() {
+        },
+    ];
+    return arr;
+
+    // good
+    const arr = [
+        function foo() {
+        },
+
+        function bar() {
+        },
+    ];
+
+    return arr;
     ```
 
+  <a name="whitespace--padded-blocks"></a><a name="18.8"></a>
+  - [18.8](#whitespace--padded-blocks) 禁止块内填充空行。eslint: [`padded-blocks`](http://eslint.cn/docs/rules/padded-blocks)
+
+    ```javascript
+    // bad
+    function bar() {
+
+        console.log(foo);
+
+    }
+
+    // also bad
+    if (baz) {
+
+        console.log(qux);
+    } else {
+        console.log(foo);
+
+    }
+
+    // good
+    function bar() {
+        console.log(foo);
+    }
+
+    // good
+    if (baz) {
+        console.log(qux);
+    } else {
+        console.log(foo);
+    }
+    ```
+
+  <a name="whitespace--in-parens"></a><a name="18.9"></a>
+  - [18.9](#whitespace--in-parens) 不要在圆括号内加空格。eslint: [`space-in-parens`](http://eslint.cn/docs/rules/space-in-parens)
+
+    ```javascript
+    // bad
+    function bar( foo ) {
+        return foo;
+    }
+
+    // good
+    function bar(foo) {
+        return foo;
+    }
+
+    // bad
+    if ( foo ) {
+        console.log(foo);
+    }
+
+    // good
+    if (foo) {
+        console.log(foo);
+    }
+    ```
+
+  <a name="whitespace--in-brackets"></a><a name="18.10"></a>
+  - [18.10](#whitespace--in-brackets) 不要在方括号内加空格。eslint: [`array-bracket-spacing`](http://eslint.cn/docs/rules/array-bracket-spacing)
+
+    ```javascript
+    // bad
+    const foo = [ 1, 2, 3 ];
+    console.log(foo[ 0 ]);
+
+    // good
+    const foo = [1, 2, 3];
+    console.log(foo[0]);
+    ```
+
+  <a name="whitespace--in-braces"></a><a name="18.11"></a>
+  - [18.11](#whitespace--in-braces) 不要在花括号内加空格。eslint: [`object-curly-spacing`](http://eslint.cn/docs/rules/object-curly-spacing)
+
+    ```javascript
+    // bad
+    const foo = {clark: 'kent'};
+
+    // good
+    const foo = { clark: 'kent' };
+    ```
+
+  <a name="whitespace--max-len"></a><a name="18.12"></a>
+  - [18.12](#whitespace--max-len) 单行代码不要超过 100 个字符串（空格计算在内）。注意：[above](#strings--line-length), 长字符串不遵循这条规则而且长字符串不应该被折行。eslint: [`max-len`](http://eslint.cn/docs/rules/max-len)
+
+    > 为什么？为了可读性和可维护性。
+
+    ```javascript
+    // bad
+    const foo = jsonData && jsonData.foo && jsonData.foo.bar && jsonData.foo.bar.baz && jsonData.foo.bar.baz.quux && jsonData.foo.bar.baz.quux.xyzzy;
+
+    // bad
+    $.ajax({ method: 'POST', url: 'https://airbnb.com/', data: { name: 'John' } }).done(() => console.log('Congratulations!')).fail(() => console.log('You have failed this city.'));
+
+    // good
+    const foo = jsonData
+        && jsonData.foo
+        && jsonData.foo.bar
+        && jsonData.foo.bar.baz
+        && jsonData.foo.bar.baz.quux
+        && jsonData.foo.bar.baz.quux.xyzzy;
+
+    // good
+    $.ajax({
+        method: 'POST',
+        url: 'https://airbnb.com/',
+        data: { name: 'John' },
+    })
+        .done(() => console.log('Congratulations!'))
+        .fail(() => console.log('You have failed this city.'));
+    ```
 
 **[⬆ 返回目录](#table-of-contents)**
 

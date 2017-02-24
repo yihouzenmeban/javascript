@@ -1396,7 +1396,8 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
 <a name="variables"></a>
 ## 变量
 
-  - [13.1](#13.1) <a name='13.1'></a> 一直使用 `const` 来声明变量，如果不这样做就会产生全局变量。我们需要避免全局命名空间的污染。[地球队长](http://www.wikiwand.com/en/Captain_Planet)已经警告过我们了。（译注：全局，global 亦有全球的意思。地球队长的责任是保卫地球环境，所以他警告我们不要造成「全球」污染。）
+  <a name="variables--const"></a><a name="13.1"></a>
+  - [13.1](#variables--const) 一直使用 `const` 来声明变量，如果不这样做就会产生全局变量。我们需要避免全局命名空间的污染。[地球队长](http://www.wikiwand.com/en/Captain_Planet)已经警告过我们了。（译注：全局，global 亦有全球的意思。地球队长的责任是保卫地球环境，所以他警告我们不要造成「全球」污染。）eslint: [`no-undef`](http://eslint.cn/docs/rules/no-undef) [`prefer-const`](http://eslint.cn/docs/rules/prefer-const)
 
     ```javascript
     // bad
@@ -1406,7 +1407,8 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
     const superPower = new SuperPower();
     ```
 
-  - [13.2](#13.2) <a name='13.2'></a> 使用 `const` 声明每一个变量。
+  <a name="variables--one-const"></a><a name="13.2"></a>
+  - [13.2](#variables--one-const) 使用 `const` 声明每一个变量。eslint: [`one-var`](http://eslint.cn/docs/rules/one-var)
 
     > 为什么？增加新变量将变的更加容易，而且你永远不用再担心调换错 `;` 跟 `,`。
 
@@ -1428,9 +1430,10 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
     const dragonball = 'z';
     ```
 
-  - [13.3](#13.3) <a name='13.3'></a> 将所有的 `const` 和 `let` 分组
+  <a name="variables--const-let-group"></a><a name="13.3"></a>
+  - [13.3](#variables--const-let-group) 将所有的 `const` 和 `let` 分组
 
-  > 为什么？当你需要把已赋值变量赋值给未赋值变量时非常有用。
+    > 为什么？当你需要把已赋值变量赋值给未赋值变量时非常有用。
 
     ```javascript
     // bad
@@ -1453,51 +1456,109 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
     let length;
     ```
 
-  - [13.4](#13.4) <a name='13.4'></a> 在你需要的地方给变量赋值，但请把它们放在一个合理的位置。
+  <a name="variables--define-where-used"></a><a name="13.4"></a>
+  - [13.4](#variables--define-where-used) 在你需要的地方给变量赋值，但请把它们放在一个合理的位置。
 
-  > 为什么？`let` 和 `const` 是块级作用域而不是函数作用域。
+    > 为什么？`let` 和 `const` 是块级作用域而不是函数作用域。
 
     ```javascript
-    // good
-    function() {
-      test();
-      console.log('doing stuff..');
+    // bad - 无意义的函数调用
+    function checkName(hasName) {
+        const name = getName();
 
-      //..other stuff..
+        if (hasName === 'test') {
+            return false;
+        }
 
-      const name = getName();
+        if (name === 'test') {
+            this.setName('');
+            return false;
+        }
 
-      if (name === 'test') {
-        return false;
-      }
-
-      return name;
-    }
-
-    // bad - unnecessary function call
-    function(hasName) {
-      const name = getName();
-
-      if (!hasName) {
-        return false;
-      }
-
-      this.setFirstName(name);
-
-      return true;
+        return name;
     }
 
     // good
-    function(hasName) {
-      if (!hasName) {
-        return false;
-      }
+    function checkName(hasName) {
+        if (hasName === 'test') {
+            return false;
+        }
 
-      const name = getName();
-      this.setFirstName(name);
+        const name = getName();
 
-      return true;
+        if (name === 'test') {
+            this.setName('');
+            return false;
+        }
+
+        return name;
     }
+    ```
+
+  <a name="variables--no-chain-assignment"></a><a name="13.5"></a>
+  - [13.5](#variables--no-chain-assignment) 不要链式定义。
+
+    > 为什么? 链式定义会引起隐式的全局定义。
+
+    ```javascript
+    // bad
+    (function example() {
+        // JavaScript 解释为
+        // let a = ( b = ( c = 1 ) );
+        // let 只作用于 a，b 和 c 变成了全局定义。
+        let a = b = c = 1;
+    }());
+
+    console.log(a); // undefined
+    console.log(b); // 1
+    console.log(c); // 1
+
+    // good
+    (function example() {
+        let a = 1;
+        let b = a;
+        let c = a;
+    }());
+
+    console.log(a); // undefined
+    console.log(b); // undefined
+    console.log(c); // undefined
+
+    // `const` 也一样。
+    ```
+
+  <a name="variables--unary-increment-decrement"></a><a name="13.6"></a>
+  - [13.6](#variables--unary-increment-decrement) 不要使用一元操作符 (++, --)。 eslint [`no-plusplus`](http://eslint.cn/docs/rules/no-plusplus)
+
+    > 为什么? 按照 eslint 的文档，一元操作符 `++` 和 `--` 会自动添加分号，不同的空白可能会改变源代码的语义。而且还会在项目中导致一些意外。
+
+    ```javascript
+    // bad
+
+    const array = [1, 2, 3];
+    let num = 1;
+    num++;
+    --num;
+
+    let sum = 0;
+    let truthyCount = 0;
+    for (let i = 0; i < array.length; i++) {
+        let value = array[i];
+        sum += value;
+        if (value) {
+            truthyCount++;
+        }
+    }
+
+    // good
+
+    const array = [1, 2, 3];
+    let num = 1;
+    num += 1;
+    num -= 1;
+
+    const sum = array.reduce((a, b) => a + b, 0);
+    const truthyCount = array.filter(Boolean).length;
     ```
 
 **[⬆ 返回目录](#table-of-contents)**

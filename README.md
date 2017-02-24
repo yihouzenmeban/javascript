@@ -253,7 +253,7 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
   <a name="objects--quoted-props"></a><a name="3.6"></a>
   - [3.6](#objects--quoted-props) 对无效的标识符使用引号。eslint: [`quote-props`](http://eslint.cn/docs/rules/quote-props)
 
-    > Why? In general we consider it subjectively easier to read. It improves syntax highlighting, and is also more easily optimized by many JS engines.
+    > 为什么? 一般我们主观上认为这样可读性更好，这样可以改善语法高亮，而且更容易被 JS 引擎优化。
 
     ```javascript
     // bad
@@ -531,12 +531,12 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
     ```
 
   <a name="strings--eval"></a><a name="6.4"></a>
-  - [6.4](#strings--eval) 永远不要对字符串使用 `eval()`，这个函数引起很多问题。
+  - [6.4](#strings--eval) 永远不要对字符串使用 `eval()`，这个函数会引起很多问题。
 
   <a name="strings--escaping"></a><a name="6.5"></a>
   - [6.5](#strings--escaping) 不要在字符串中使用无意义的转义 eslint: [`no-useless-escape`](http://eslint.cn/docs/rules/no-useless-escape)
 
-    > 为什么? 反斜杠是可读性变差，因此它们只在必要的时候被使用。
+    > 为什么? 反斜杠使可读性变差，因此只在必要的时候使用。
 
     ```javascript
     // bad
@@ -555,7 +555,7 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
   <a name="functions--declarations"></a><a name="7.1"></a>
   - [7.1](#functions--declarations) 使用函数表达式代替函数声明。
 
-  > 为什么？函数声明会把整个函数提升（hoisted），这意味着我们很容易在函数定义的位置之前去引用这个函数，这会影响到代码的可维护性和可读性。
+  > 为什么？函数声明会把整个函数提升（hoisted），这意味着我们很容易在函数定义的位置之前去引用这个函数，会影响到代码的可维护性和可读性。
 
     ```javascript
     // bad
@@ -568,7 +568,7 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
     ```
 
   <a name="functions--iife"></a><a name="7.2"></a>
-  - [7.2](#functions--iife) 需要把立即执行的函数包裹起来。eslint: [`wrap-iife`](http://eslint.cn/docs/rules/wrap-iife)
+  - [7.2](#functions--iife) 把需要立即执行的函数包裹起来。eslint: [`wrap-iife`](http://eslint.cn/docs/rules/wrap-iife)
 
     ```javascript
     // 立即调用的函数表达式 (IIFE)
@@ -578,7 +578,7 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
     ```
 
   <a name="functions--in-blocks"></a><a name="7.3"></a>
-  - [7.3](#functions--in-blocks) 永远不要在一个非函数代码块（`if`、`while` 等）中声明一个函数，把那个函数赋给一个变量。虽然浏览器允许你这么做，但它们的解析表现不一致。eslint: [`no-loop-func`](http://eslint.cn/docs/rules/no-loop-func)
+  - [7.3](#functions--in-blocks) 永远不要在一个非函数代码块（`if`、`while` 等）中声明一个函数。把那个函数赋给一个变量再使用。虽然浏览器允许你这么做，但它们的解析表现不一致。eslint: [`no-loop-func`](http://eslint.cn/docs/rules/no-loop-func)
 
   <a name="functions--note-on-blocks"></a><a name="7.4"></a>
   - [7.4](#functions--note-on-blocks) **注意:** ECMA-262 把 `block` 定义为一组语句。函数声明不是语句。[阅读 ECMA-262 关于这个问题的说明](http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=97)。
@@ -831,38 +831,100 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
 <a name="arrow-functions"></a>
 ## 箭头函数
 
-  - [8.1](#8.1) <a name='8.1'></a> 当你必须使用函数表达式（或传递一个匿名函数）时，使用箭头函数符号。
+  <a name="arrows--use-them"></a><a name="8.1"></a>
+  - [8.1](#arrows--use-them) 当你必须使用函数表达式（或传递一个匿名函数）时，使用箭头函数符号。eslint: [`prefer-arrow-callback`](http://eslint.cn/docs/rules/prefer-arrow-callback), [`arrow-spacing`](http://eslint.cn/docs/rules/arrow-spacing)
 
-  > 为什么?因为箭头函数创造了新的一个 `this` 执行环境（译注：参考 [Arrow functions - JavaScript | MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions) 和 [ES6 arrow functions, syntax and lexical scoping](http://toddmotto.com/es6-arrow-functions-syntaxes-and-lexical-scoping/)），通常情况下都能满足你的需求，而且这样的写法更为简洁。
+    > 为什么?因为箭头函数创造了新的一个 `this` 执行环境（译注：参考 [Arrow functions - JavaScript | MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions) 和 [ES6 arrow functions, syntax and lexical scoping](http://toddmotto.com/es6-arrow-functions-syntaxes-and-lexical-scoping/)），通常情况下都能满足你的需求，而且这样的写法更为简洁。
 
-  > 为什么不？如果你有一个相当复杂的函数，你或许可以把逻辑部分转移到一个函数声明上。
+    > 为什么不？如果你有一个相当复杂的函数，你或许可以把逻辑部分转移到一个函数声明上。
 
     ```javascript
     // bad
     [1, 2, 3].map(function (x) {
-      return x * x;
+        const y = x + 1;
+        return x * y;
     });
 
     // good
     [1, 2, 3].map((x) => {
-      return x * x;
+        const y = x + 1;
+        return x * y;
     });
     ```
 
-  - [8.2](#8.2) <a name='8.2'></a> 如果一个函数适合用一行写出并且只有一个参数，那就把花括号、圆括号和 `return` 都省略掉。如果不是，那就不要省略。
+  <a name="arrows--implicit-return"></a><a name="8.2"></a>
+  - [8.2](#arrows--implicit-return)如果一个函数适合用一行写出并且只有一个参数，那就把花括号、圆括号和 `return` 都省略掉。如果不是，那就不要省略。eslint: [`arrow-parens`](http://eslint.cn/docs/rules/arrow-parens), [`arrow-body-style`](http://eslint.cn/docs/rules/arrow-body-style)
 
-  > 为什么？语法糖。在链式调用中可读性很高。
-
-  > 为什么不？当你打算回传一个对象的时候。
+    > 为什么？语法糖。在链式调用中可读性很高。
 
     ```javascript
-    // good
-    [1, 2, 3].map(x => x * x);
+    // bad
+    [1, 2, 3].map(number => {
+        const nextNumber = number + 1;
+        `A string containing the ${nextNumber}.`;
+    });
 
     // good
-    [1, 2, 3].reduce((total, n) => {
-      return total + n;
-    }, 0);
+    [1, 2, 3].map(number => `A string containing the ${number}.`);
+
+    //bad
+    [1, 2, 3].map(number => {
+        const nextNumber = number + 1;
+        return `A string containing the ${nextNumber}.`;
+    });
+
+    // good
+    [1, 2, 3].map((number) => {
+        const nextNumber = number + 1;
+        return `A string containing the ${nextNumber}.`;
+    });
+
+    // good
+    [1, 2, 3].map((number, index) => ({
+        [index]: number,
+    }));
+    ```
+
+  <a name="arrows--paren-wrap"></a><a name="8.3"></a>
+  - [8.3](#arrows--paren-wrap) 当表达式占用了多行的时候，为了更好的可读性，用括号包裹起来。
+
+    > 为什么? 函数内容看起来会很清晰。
+
+    ```javascript
+    // bad
+    ['get', 'post', 'put'].map(httpMethod => Object.prototype.hasOwnProperty.call(
+            httpMagicObjectWithAVeryLongName,
+            httpMethod,
+        )
+    );
+
+    // good
+    ['get', 'post', 'put'].map(httpMethod => (
+        Object.prototype.hasOwnProperty.call(
+            httpMagicObjectWithAVeryLongName,
+            httpMethod,
+        )
+    ));
+    ```
+
+   <a name="arrows--confusing"></a><a name="8.4"></a>
+  - [8.4](#arrows--confusing) 避免箭头函数语法 (`=>`) 和一些比较操作 (`<=`, `>=`) 对人造成困惑。eslint: [`no-confusing-arrow`](http://eslint.cn/docs/rules/no-confusing-arrow)
+
+    ```javascript
+    // bad
+    const itemHeight = item => item.height > 256 ? item.largeSize : item.smallSize;
+
+    // bad
+    const itemHeight = (item) => item.height > 256 ? item.largeSize : item.smallSize;
+
+    // good
+    const itemHeight = item => (item.height > 256 ? item.largeSize : item.smallSize);
+
+    // good
+    const itemHeight = (item) => {
+        const { height, largeSize, smallSize } = item;
+        return height > 256 ? largeSize : smallSize;
+    };
     ```
 
 **[⬆ 返回目录](#table-of-contents)**

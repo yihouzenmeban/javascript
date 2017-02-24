@@ -471,7 +471,8 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
 <a name="strings"></a>
 ## Strings
 
-  - [6.1](#6.1) <a name='6.1'></a> 字符串使用单引号 `''` 。
+  <a name="strings--quotes"></a><a name="6.1"></a>
+  - [6.1](#strings--quotes) 字符串使用单引号 `''` 。eslint: [`quotes`](http://eslint.cn/docs/rules/quotes)
 
     ```javascript
     // bad
@@ -481,45 +482,69 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
     const name = 'Capt. Janeway';
     ```
 
-  - [6.2](#6.2) <a name='6.2'></a> 字符串超过 80 个字节应该使用字符串连接号换行。
-  - [6.3](#6.3) <a name='6.3'></a> 注：过度使用字串连接符号可能会对性能造成影响。[jsPerf](http://jsperf.com/ya-string-concat) 和 [讨论](https://github.com/airbnb/javascript/issues/40).
+  <a name="strings--line-length"></a><a name="6.2"></a>
+  - [6.2](#strings--line-length) 字符串超过 100 个字节不要使用字符串连接符写成多行。
+
+    > 为什么? 拆成多行的字符串很难维护而且不易于搜索。
 
     ```javascript
-    // bad
-    const errorMessage = 'This is a super long error that was thrown because of Batman. When you stop to think about how Batman had anything to do with this, you would get nowhere fast.';
-
     // bad
     const errorMessage = 'This is a super long error that was thrown because \
     of Batman. When you stop to think about how Batman had anything to do \
     with this, you would get nowhere \
     fast.';
 
-    // good
+    // bad
     const errorMessage = 'This is a super long error that was thrown because ' +
       'of Batman. When you stop to think about how Batman had anything to do ' +
       'with this, you would get nowhere fast.';
+
+    // good
+    const errorMessage = 'This is a super long error that was thrown because of Batman. When you stop to think about how Batman had anything to do with this, you would get nowhere fast.';
     ```
 
-  <a name="es6-template-literals"></a>
-  - [6.4](#6.4) <a name='6.4'></a> 程序化生成字符串时，使用模板字符串代替字符串连接。
+  <a name="es6-template-literals"></a><a name="6.3"></a>
+  - [6.3](#es6-template-literals) 程序化生成字符串时，使用模板字符串代替字符串连接。
 
   > 为什么？模板字符串更为简洁，更具可读性。
 
     ```javascript
     // bad
     function sayHi(name) {
-      return 'How are you, ' + name + '?';
+        return 'How are you, ' + name + '?';
     }
 
     // bad
     function sayHi(name) {
-      return ['How are you, ', name, '?'].join();
+        return ['How are you, ', name, '?'].join();
+    }
+
+    // bad
+    function sayHi(name) {
+        return `How are you, ${ name }?`;
     }
 
     // good
     function sayHi(name) {
-      return `How are you, ${name}?`;
+        return `How are you, ${name}?`;
     }
+    ```
+
+  <a name="strings--eval"></a><a name="6.4"></a>
+  - [6.4](#strings--eval) 永远不要对字符串使用 `eval()`，这个函数引起很多问题。
+
+  <a name="strings--escaping"></a><a name="6.5"></a>
+  - [6.5](#strings--escaping) 不要在字符串中使用无意义的转义 eslint: [`no-useless-escape`](http://eslint.cn/docs/rules/no-useless-escape)
+
+    > 为什么? 反斜杠是可读性变差，因此它们只在必要的时候被使用。
+
+    ```javascript
+    // bad
+    const foo = '\'this\' \i\s \"quoted\"';
+
+    // good
+    const foo = '\'this\' is "quoted"';
+    const foo = `my name is '${name}'`;
     ```
 
 **[⬆ 返回目录](#table-of-contents)**
@@ -527,110 +552,117 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
 <a name="functions"></a>
 ## 函数
 
-  - [7.1](#7.1) <a name='7.1'></a> 使用函数声明代替函数表达式。
+  <a name="functions--declarations"></a><a name="7.1"></a>
+  - [7.1](#functions--declarations) 使用函数表达式代替函数声明。
 
-  > 为什么？因为函数声明是可命名的，所以他们在调用栈中更容易被识别。此外，函数声明会把整个函数提升（hoisted），而函数表达式只会把函数的引用变量名提升。这条规则使得[箭头函数](#arrow-functions)可以取代函数表达式。
+  > 为什么？函数声明会把整个函数提升（hoisted），这意味着我们很容易在函数定义的位置之前去引用这个函数，这会影响到代码的可维护性和可读性。
 
     ```javascript
     // bad
-    const foo = function () {
-    };
-
-    // good
     function foo() {
     }
+
+    // good
+    const foo = function () {
+    };
     ```
 
-  - [7.2](#7.2) <a name='7.2'></a> 函数表达式:
+  <a name="functions--iife"></a><a name="7.2"></a>
+  - [7.2](#functions--iife) 需要把立即执行的函数包裹起来。eslint: [`wrap-iife`](http://eslint.cn/docs/rules/wrap-iife)
 
     ```javascript
     // 立即调用的函数表达式 (IIFE)
     (() => {
-      console.log('Welcome to the Internet. Please follow me.');
+        console.log('Welcome to the Internet. Please follow me.');
     })();
     ```
 
-  - [7.3](#7.3) <a name='7.3'></a> 永远不要在一个非函数代码块（`if`、`while` 等）中声明一个函数，把那个函数赋给一个变量。浏览器允许你这么做，但它们的解析表现不一致。
-  - [7.4](#7.4) <a name='7.4'></a> **注意:** ECMA-262 把 `block` 定义为一组语句。函数声明不是语句。[阅读 ECMA-262 关于这个问题的说明](http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=97)。
+  <a name="functions--in-blocks"></a><a name="7.3"></a>
+  - [7.3](#functions--in-blocks) 永远不要在一个非函数代码块（`if`、`while` 等）中声明一个函数，把那个函数赋给一个变量。虽然浏览器允许你这么做，但它们的解析表现不一致。eslint: [`no-loop-func`](http://eslint.cn/docs/rules/no-loop-func)
+
+  <a name="functions--note-on-blocks"></a><a name="7.4"></a>
+  - [7.4](#functions--note-on-blocks) **注意:** ECMA-262 把 `block` 定义为一组语句。函数声明不是语句。[阅读 ECMA-262 关于这个问题的说明](http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=97)。
 
     ```javascript
     // bad
     if (currentUser) {
-      function test() {
-        console.log('Nope.');
-      }
+        function test() {
+            console.log('Nope.');
+        }
     }
 
     // good
     let test;
     if (currentUser) {
-      test = () => {
-        console.log('Yup.');
-      };
+        test = () => {
+            console.log('Yup.');
+        };
     }
     ```
 
-  - [7.5](#7.5) <a name='7.5'></a> 永远不要把参数命名为 `arguments`。这将取代原来函数作用域内的 `arguments` 对象。
+  <a name="functions--arguments-shadow"></a><a name="7.5"></a>
+  - [7.5](#functions--arguments-shadow) 永远不要把参数命名为 `arguments`。这将覆盖原来函数作用域内的 `arguments` 对象。
 
     ```javascript
     // bad
     function nope(name, options, arguments) {
-      // ...stuff...
+        // ...
     }
 
     // good
     function yup(name, options, args) {
-      // ...stuff...
+        // ...
     }
     ```
 
-  <a name="es6-rest"></a>
-  - [7.6](#7.6) <a name='7.6'></a> 不要使用 `arguments`。可以选择 rest 语法 `...` 替代。
+  <a name="es6-rest"></a><a name="7.6"></a>
+  - [7.6](#es6-rest) <a name='7.6'></a> 不要使用 `arguments`。可以选择 rest 语法 `...` 替代。
 
   > 为什么？使用 `...` 能明确你要传入的参数。另外 rest 参数是一个真正的数组，而 `arguments` 是一个类数组。
 
     ```javascript
     // bad
     function concatenateAll() {
-      const args = Array.prototype.slice.call(arguments);
-      return args.join('');
+        const args = Array.prototype.slice.call(arguments);
+        return args.join('');
     }
 
     // good
     function concatenateAll(...args) {
-      return args.join('');
+        return args.join('');
     }
     ```
 
-  <a name="es6-default-parameters"></a>
-  - [7.7](#7.7) <a name='7.7'></a> 直接给函数的参数指定默认值，不要使用一个变化的函数参数。
+  <a name="es6-default-parameters"></a><a name="7.7"></a>
+  - [7.7](#es6-default-parameters) 直接给函数的参数指定默认值，不要改变函数参数。
 
     ```javascript
     // really bad
     function handleThings(opts) {
-      // 不！我们不应该改变函数参数。
-      // 更加糟糕: 如果参数 opts 是 false 的话，它就会被设定为一个对象。
-      // 但这样的写法会造成一些 Bugs。
-      //（译注：例如当 opts 被赋值为空字符串，opts 仍然会被下一行代码设定为一个空对象。）
-      opts = opts || {};
-      // ...
+        // 不！我们不应该改变函数参数。
+        // 更加糟糕: 如果参数 opts 是 false 的话，它就会被设定为一个对象。
+        // 但这样的写法会造成一些 Bugs。
+        //（译注：例如当 opts 被赋值为空字符串，opts 仍然会被下一行代码设定为一个空对象。）
+        opts = opts || {};
+        // ...
     }
 
     // still bad
     function handleThings(opts) {
-      if (opts === void 0) {
-        opts = {};
-      }
-      // ...
+        if (opts === void 0) {
+            opts = {};
+        }
+        // ...
     }
 
     // good
     function handleThings(opts = {}) {
-      // ...
+        // ...
     }
     ```
 
-  - [7.8](#7.8) <a name='7.8'></a> 直接给函数参数赋值时需要避免副作用。
+  <a name="functions--default-side-effects"></a><a name="7.8"></a>
+  - [7.8](#functions--default-side-effects) 直接给函数参数赋值时需要避免副作用。
 
   > 为什么？因为这样的写法让人感到很困惑。
 
@@ -638,7 +670,7 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
   var b = 1;
   // bad
   function count(a = b++) {
-    console.log(a);
+      console.log(a);
   }
   count();  // 1
   count();  // 2
@@ -646,6 +678,153 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
   count();  // 3
   ```
 
+  <a name="functions--defaults-last"></a><a name="7.9"></a>
+  - [7.9](#functions--defaults-last) 把默认的参数放在最后面。
+
+    ```javascript
+    // bad
+    function handleThings(opts = {}, name) {
+        // ...
+    }
+
+    // good
+    function handleThings(name, opts = {}) {
+        // ...
+    }
+    ```
+
+  <a name="functions--constructor"></a><a name="7.10"></a>
+  - [7.10](#functions--constructor) 永远不要使用 `Function` 去构造一个新的函数。eslint: [`no-new-func`](http://eslint.cn/docs/rules/no-new-func)
+
+    > 为什么？用这种方式去创建一个新的函数相当于对字符串使用 `eval()`，会引起很多问题。
+
+    ```javascript
+    // bad
+    var add = new Function('a', 'b', 'return a + b');
+
+    // still bad
+    var subtract = Function('a', 'b', 'return a - b');
+
+    // good
+    var x = function (a, b) {
+        return a + b;
+    };
+    ```
+
+  <a name="functions--signature-spacing"></a><a name="7.11"></a>
+  - [7.11](#functions--signature-spacing) 在函数的圆括号前后添加空格。 eslint: [`space-before-function-paren`](http://eslint.cn/docs/rules/space-before-function-paren) [`space-before-blocks`](http://eslint.cn/docs/rules/space-before-blocks)
+
+    > 为什么? 一致性很重要，而且在添加或者删除函数名字的时候不需要添加或者删除空格了。
+
+    ```javascript
+    // bad
+    const f = function(){};
+    const g = function (){};
+    const h = function() {};
+
+    // good
+    const x = function () {};
+    const y = function a() {};
+    ```
+
+  <a name="functions--mutate-params"></a><a name="7.12"></a>
+  - [7.12](#functions--mutate-params) 永远不要操作参数。eslint: [`no-param-reassign`](http://eslint.cn/docs/rules/no-param-reassign)
+
+    > 为什么？对函数参数中的变量进行操作可能会误导读者，导致混乱，也会改变 `arguments` 对象。
+
+    ```javascript
+    // bad
+    function f1(obj) {
+        obj.key = 1;
+    }
+
+    // good
+    function f2(obj) {
+        const key = Object.prototype.hasOwnProperty.call(obj, 'key') ? obj.key : 1;
+    }
+    ```
+
+  <a name="functions--reassign-params"></a><a name="7.13"></a>
+  - [7.13](#functions--reassign-params) 永远不要对参数重新赋值。eslint: [`no-param-reassign`](http://eslint.cn/docs/rules/no-param-reassign)
+
+    > 为什么? 重新赋值参数会导致一些不可预料的情况发生，比如当访问 `arguments` 对象的时候。这也会影响一些性能优化问问题，特别是在 [`v8`](https://github.com/v8/v8) 引擎中。
+
+    ```javascript
+    // bad
+    function f1(a) {
+        a = 1;
+        // ...
+    }
+
+    function f2(a) {
+        if (!a) { a = 1; }
+        // ...
+    }
+
+    // good
+    function f3(a) {
+        const b = a || 1;
+        // ...
+    }
+
+    function f4(a = 1) {
+        // ...
+    }
+    ```
+
+  <a name="functions--spread-vs-apply"></a><a name="7.14"></a>
+  - [7.14](#functions--spread-vs-apply) 最好使用扩展运算符 `...` 调用可变参数函数。eslint: [`prefer-spread`](http://eslint.cn/docs/rules/prefer-spread)
+
+    > Why? It's cleaner, you don't need to supply a context, and you can not easily compose `new` with `apply`.
+
+    ```javascript
+    // bad
+    const x = [1, 2, 3, 4, 5];
+    console.log.apply(console, x);
+
+    // good
+    const x = [1, 2, 3, 4, 5];
+    console.log(...x);
+
+    // bad
+    new (Function.prototype.bind.apply(Date, [null, 2016, 8, 5]));
+
+    // good
+    new Date(...[2016, 8, 5]);
+    ```
+
+  <a name="functions--signature-invocation-indentation"></a>
+  - [7.15](#functions--signature-invocation-indentation) 有多个参数的函数在调用或者定义的时候，如果要使用换行缩进，应该和其它多行列表使用一个标准：每一条语句占用一行，在最后加上一个逗号。
+
+    ```javascript
+    // bad
+    function foo(bar,
+                 baz,
+                 quux) {
+        // ...
+    }
+
+    // good
+    function foo(
+        bar,
+        baz,
+        quux,
+    ) {
+      // ...
+    }
+
+    // bad
+    console.log(foo,
+        bar,
+        baz);
+
+    // good
+    console.log(
+        foo,
+        bar,
+        baz,
+    );
+    ```
 
 **[⬆ 返回目录](#table-of-contents)**
 

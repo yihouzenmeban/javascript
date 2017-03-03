@@ -726,7 +726,7 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
     ```
 
   <a name="functions--mutate-params"></a><a name="7.12"></a>
-  - [7.12](#functions--mutate-params) 永远不要操作参数。eslint: [`no-param-reassign`](http://eslint.cn/docs/rules/no-param-reassign)
+  - ~~[7.12](#functions--mutate-params) 永远不要操作参数。eslint: [`no-param-reassign`](http://eslint.cn/docs/rules/no-param-reassign)~~
 
     > 为什么？对函数参数中的变量进行操作可能会误导读者，导致混乱，也会改变 `arguments` 对象。
 
@@ -1358,7 +1358,7 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
 ## 属性
 
   <a name="properties--dot"></a><a name="12.1"></a>
-  - [12.1](#properties--dot) 使用 `.` 来访问对象的属性。eslint: [`dot-notation`](http://eslint.cn/docs/rules/dot-notation)
+  - ~~[12.1](#properties--dot) 使用 `.` 来访问对象的属性。eslint: [`dot-notation`](http://eslint.cn/docs/rules/dot-notation)~~
 
     ```javascript
     const luke = {
@@ -1526,7 +1526,7 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
     ```
 
   <a name="variables--unary-increment-decrement"></a><a name="13.6"></a>
-  - [13.6](#variables--unary-increment-decrement) 不要使用一元操作符 (++, --)。 eslint [`no-plusplus`](http://eslint.cn/docs/rules/no-plusplus)
+  - ~~[13.6](#variables--unary-increment-decrement) 不要使用一元操作符 (++, --)。 eslint [`no-plusplus`](http://eslint.cn/docs/rules/no-plusplus)~~
 
     > 为什么? 按照 eslint 的文档，一元操作符 `++` 和 `--` 会自动添加分号，不同的空白可能会改变源代码的语义。而且还会在项目中导致一些意外。
 
@@ -1663,7 +1663,7 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
 ## 比较运算符 & 等号
 
   <a name="comparison--eqeqeq"></a><a name="15.1"></a>
-  - [15.1](#comparison--eqeqeq) 优先使用 `===` 和 `!==` 而不是 `==` 和 `!=`。eslint: [`eqeqeq`](http://eslint.cn/docs/rules/eqeqeq)
+  - ~~[15.1](#comparison--eqeqeq) 优先使用 `===` 和 `!==` 而不是 `==` 和 `!=`。eslint: [`eqeqeq`](http://eslint.cn/docs/rules/eqeqeq)~~
 
   <a name="comparison--if"></a><a name="15.2"></a>
   - [15.2](#comparison--if) 条件表达式例如 `if` 语句通过抽象方法 `ToBoolean` 强制计算它们的表达式并且总是遵守下面的规则：
@@ -2054,22 +2054,22 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
     ```javascript
     // bad
     if(isJedi) {
-      fight ();
+        fight ();
     }
 
     // good
     if (isJedi) {
-      fight();
+        fight();
     }
 
     // bad
     function fight () {
-      console.log ('Swooosh!');
+        console.log ('Swooosh!');
     }
 
     // good
     function fight() {
-      console.log('Swooosh!');
+        console.log('Swooosh!');
     }
     ```
 
@@ -2654,7 +2654,7 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
     function foo() {
         const self = this;
         return function() {
-          console.log(self);
+            console.log(self);
         };
     }
 
@@ -2662,14 +2662,14 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
     function foo() {
         const that = this;
         return function() {
-          console.log(that);
+            console.log(that);
         };
     }
 
     // good
     function foo() {
         return () => {
-           console.log(this);
+            console.log(this);
         };
     }
     ```
@@ -2777,11 +2777,11 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
     // bad
     class Dragon {
         get age() {
-          // ...
+            // ...
         }
 
         set age(value) {
-          // ...
+            // ...
         }
     }
 

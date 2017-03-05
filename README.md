@@ -2947,19 +2947,19 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
   <a name="es6-styles"></a><a name="27.1"></a>
   - [27.1](#es6-styles) 以下是链接到 ES6 的各个特性的列表。
 
-1. [Arrow Functions](#arrow-functions)
-1. [Classes](#constructors)
-1. [Object Shorthand](#es6-object-shorthand)
-1. [Object Concise](#es6-object-concise)
-1. [Object Computed Properties](#es6-computed-properties)
-1. [Template Strings](#es6-template-literals)
-1. [Destructuring](#destructuring)
-1. [Default Parameters](#es6-default-parameters)
-1. [Rest](#es6-rest)
-1. [Array Spreads](#es6-array-spreads)
-1. [Let and Const](#references)
-1. [Iterators and Generators](#iterators-and-generators)
-1. [Modules](#modules)
+    * [Arrow Functions](#arrow-functions)
+    * [Classes](#constructors)
+    * [Object Shorthand](#es6-object-shorthand)
+    * [Object Concise](#es6-object-concise)
+    * [Object Computed Properties](#es6-computed-properties)
+    * [Template Strings](#es6-template-literals)
+    * [Destructuring](#destructuring)
+    * [Default Parameters](#es6-default-parameters)
+    * [Rest](#es6-rest)
+    * [Array Spreads](#es6-array-spreads)
+    * [Let and Const](#references)
+    * [Iterators and Generators](#iterators-and-generators)
+    * [Modules](#modules)
 
   <a name="tc39-proposals"><a name="27.2"></a>
   - [27.2](#tc39-proposals) 不要使用还没有到达第三步的 [TC39 proposals](https://github.com/tc39/proposals)。

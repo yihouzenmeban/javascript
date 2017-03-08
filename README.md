@@ -1358,7 +1358,7 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
 ## 属性
 
   <a name="properties--dot"></a><a name="12.1"></a>
-  - ~~[12.1](#properties--dot) 使用 `.` 来访问对象的属性。eslint: [`dot-notation`](http://eslint.cn/docs/rules/dot-notation)~~
+  - [12.1](#properties--dot) 使用 `.` 来访问对象的属性。eslint: [`dot-notation`](http://eslint.cn/docs/rules/dot-notation)
 
     ```javascript
     const luke = {
@@ -2049,7 +2049,7 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
     ```
 
   <a name="whitespace--around-keywords"></a><a name="18.3"></a>
-  - [18.3](#whitespace--around-keywords) 在控制语句（`if`、`while` 等）的小括号前放一个空格。在函数调用及声明中，不在函数的参数列表前加空格。eslint: [`keyword-spacing`](http://eslint.cn/docs/rules/keyword-spacing)
+  - ~~[18.3](#whitespace--around-keywords) 在控制语句（`if`、`while` 等）的小括号前放一个空格。在函数调用及声明中，不在函数的参数列表前加空格。eslint: [`keyword-spacing`](http://eslint.cn/docs/rules/keyword-spacing)~~
 
     ```javascript
     // bad
@@ -2282,7 +2282,7 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
     ```
 
   <a name="whitespace--in-braces"></a><a name="18.11"></a>
-  - [18.11](#whitespace--in-braces) 不要在花括号内加空格。eslint: [`object-curly-spacing`](http://eslint.cn/docs/rules/object-curly-spacing)
+  - [18.11](#whitespace--in-braces) 在花括号内加空格。eslint: [`object-curly-spacing`](http://eslint.cn/docs/rules/object-curly-spacing)
 
     ```javascript
     // bad
@@ -2634,7 +2634,7 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
     ```
 
   <a name="naming--leading-underscore"></a><a name="22.4"></a>
-  - [22.4](#naming--leading-underscore) 不要使用下划线 `_` 开头或者结尾进行命名。eslint: [`no-underscore-dangle`](http://eslint.cn/docs/rules/no-underscore-dangle)
+  - ~~[22.4](#naming--leading-underscore) 不要使用下划线 `_` 开头或者结尾进行命名。eslint: [`no-underscore-dangle`](http://eslint.cn/docs/rules/no-underscore-dangle)~~
 
     ```javascript
     // bad
@@ -2647,7 +2647,7 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
     ```
 
   <a name="naming--self-this"></a><a name="22.5"></a>
-  - [22.5](#naming--self-this) 别保存 `this` 的引用。使用箭头函数或 [Function#bind](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind)。
+  - ~~[22.5](#naming--self-this) 别保存 `this` 的引用。使用箭头函数或 [Function#bind](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind)。~~
 
     ```javascript
     // bad

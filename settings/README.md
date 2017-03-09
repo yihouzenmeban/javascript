@@ -43,8 +43,18 @@
 `format_on_save` 可以自行设置是否保存的时候自动进行格式化整理，别的选项是目前咱们固定的，请不要修改。
 我们也可以使用快捷键进行格式化整理，默认快捷键 Windows 使用 `ctrl+alt+f`, Mac 使用 `control+alt+f`。
 
+另外，建议大家在 Sublime 的配置文件中加上以下配置信息：
 
-#Webstorm
+```json
+{
+    "default_line_ending": "unix", // 使用 unix 的 LF 换行符进行换行
+    "word_wrap": true, // 自动折行
+    "wrap_width": 100, // 超过 100 个字符串自动折行，ps：用于配合我们的规则，字符串不用换行。
+    "rulers": [100], // 编辑器出现 100 个字符串位置的基准线，用作提醒写函数语句时注意换行。
+}
+```
+
+# Webstorm
 下载 [webstorm.jar](webstorm.jar)，在设置里面 `Code Style` 中导入即可。
 
 大家碰到有什么格式化出现的问题，联系我哈。。

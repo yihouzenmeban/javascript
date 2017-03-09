@@ -22,7 +22,7 @@
     "space_in_paren": false,
     "space_in_empty_paren": false,
     "preserve_newlines": true,
-    "max_preserve_newlines": 4,
+    "max_preserve_newlines": 3,
     "brace_style": "collapse-preserve-inline",
     "space_after_anon_function": false,
     "comma_first": false,

@@ -5,9 +5,9 @@
 ### 安装
 直接使用 Package Control 进行安装。 Windows `Ctrl + Shift + p`, Mac `Command + Shift + p`呼出控制板，如果之前没有安装 Package Control，[点我](https://packagecontrol.io/installation)。
 
-![jsformat_02](https://ww3.sinaimg.cn/large/006tKfTcly1fdgum9kf1xj30ej01yt8n.jpg)
+![jsformat_02](https://ww4.sinaimg.cn/large/006tKfTcly1fdh37ts0woj30w40matb7.jpg)
 
-![jsformat_02](https://ww3.sinaimg.cn/large/006tKfTcly1fdgum9orn6j30bm0b7t9t.jpg)
+![jsformat_02](https://ww4.sinaimg.cn/large/006tKfTcly1fdh37wlqgrj30v80jm77o.jpg)
 
 ### 配置
 配置文件在 `Preferences->Package Settings->JsFormat` 下，你可以通过修改 `Settings - User` 去修改配置。

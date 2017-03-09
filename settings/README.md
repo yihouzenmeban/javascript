@@ -13,7 +13,7 @@
 配置文件在 `Preferences->Package Settings->JsFormat` 下，你可以通过修改 `Settings - User` 去修改配置。
 目前咱们项目的配置：
 
-```json
+```javascript
 {
     "indent_size": 4,
     "indent_char": " ",
@@ -45,7 +45,7 @@
 
 另外，建议大家在 Sublime 的配置文件中加上以下配置信息：
 
-```json
+```javascript
 {
     "default_line_ending": "unix", // 使用 unix 的 LF 换行符进行换行
     "word_wrap": true, // 自动折行

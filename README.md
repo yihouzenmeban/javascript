@@ -2049,7 +2049,7 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
     ```
 
   <a name="whitespace--around-keywords"></a><a name="18.3"></a>
-  - ~~[18.3](#whitespace--around-keywords) 在控制语句（`if`、`while` 等）的小括号前放一个空格。在函数调用及声明中，不在函数的参数列表前加空格。eslint: [`keyword-spacing`](http://eslint.cn/docs/rules/keyword-spacing)~~
+  - [18.3](#whitespace--around-keywords) 在控制语句（`if`、`while` 等）的小括号前放一个空格。在函数调用及声明中，不在函数的参数列表前加空格。eslint: [`keyword-spacing`](http://eslint.cn/docs/rules/keyword-spacing)
 
     ```javascript
     // bad

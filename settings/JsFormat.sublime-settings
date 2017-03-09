@@ -1,0 +1,25 @@
+{
+    "indent_size": 4,
+    "indent_char": " ",
+    "indent_with_tabs": false,
+    "indent_level": 0,
+    "space_in_paren": false,
+    "space_in_empty_paren": false,
+    "preserve_newlines": true,
+    "max_preserve_newlines": 4,
+    "brace_style": "collapse-preserve-inline",
+    "space_after_anon_function": false,
+    "comma_first": false,
+    "keep_array_indentation": false,
+    "keep_function_indentation": false,
+    "wrap_line_length": 100,
+    "break_chained_methods": true,
+    "unescape_strings": false,
+    "end_with_newline": true,
+
+    // jsformat options
+    "format_on_save": false,
+    "jsbeautifyrc_files": false,
+    "ignore_sublime_settings": false,
+    "format_on_save_extensions": ["es6", "js", "json"]
+}

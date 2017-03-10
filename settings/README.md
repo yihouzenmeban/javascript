@@ -9,7 +9,14 @@
 
 ![jsformat_02](https://ww1.sinaimg.cn/large/006tKfTcly1fdh3pgocfkj30fm09t0th.jpg)
 
+
+
+有时候会提示下图，是因为网络原因，可以使用 vpn 再试一次，或者手动安装。
+
+![Screen Shot 2017-03-10 at 16.54.09](https://ww2.sinaimg.cn/large/006tKfTcly1fdhuybxvuhj30bx05x0t3.jpg)
+
 ### 配置
+
 配置文件在 `Preferences->Package Settings->JsFormat` 下，你可以通过修改 `Settings - User` 去修改配置。
 目前咱们项目的配置：
 

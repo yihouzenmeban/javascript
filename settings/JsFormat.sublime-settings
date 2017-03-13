@@ -13,7 +13,7 @@
     "keep_array_indentation": false,
     "keep_function_indentation": false,
     "wrap_line_length": 100,
-    "break_chained_methods": true,
+    "break_chained_methods": false,
     "unescape_strings": false,
     "end_with_newline": true,
 

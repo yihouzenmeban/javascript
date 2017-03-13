@@ -64,6 +64,8 @@
 # Webstorm
 尝试了多种导入导出办法，一直没法成功，所以只能麻烦大家自己手动一个个点了。。感谢截图提供者及设计师[阴璐斌同学](https://github.com/yinlubin1989)。
 
+配置修改位置：`Preferences->Editor->Code Style->Javascript`
+
 ![未标题-2](https://ww3.sinaimg.cn/large/006tKfTcly1fdhkm20reyj30ux0x9dmo.jpg)
 
 大家碰到有什么格式化出现的问题，联系我哈。。

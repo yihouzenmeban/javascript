@@ -2363,9 +2363,11 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
     ```
 
   <a name="commas--dangling"></a><a name="19.2"></a>
-  - [19.2](#commas--dangling) 增加结尾的逗号: **需要**。eslint: [`comma-dangle`](http://eslint.cn/docs/rules/comma-dangle)
+  - ~~[19.2](#commas--dangling) 增加结尾的逗号: **需要**。eslint: [`comma-dangle`](http://eslint.cn/docs/rules/comma-dangle)~~
 
-    > 为什么? 这会让 git diffs 更干净。另外，像 babel 这样的转译器会移除结尾多余的逗号，也就是说你不必担心老旧浏览器的[尾逗号问题](es5/README.md#commas)。
+    > ~~为什么? 这会让 git diffs 更干净。另外，像 babel 这样的转译器会移除结尾多余的逗号，也就是说你不必担心老旧浏览器的[尾逗号问题](es5/README.md#commas)。~~
+
+    > 禁止添加结尾的逗号。
 
     ```diff
     // bad - git diff without trailing comma

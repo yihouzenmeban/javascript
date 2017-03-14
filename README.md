@@ -566,7 +566,7 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
     ```
 
   <a name="functions--iife"></a><a name="7.2"></a>
-  - [7.2](#functions--iife) 把需要立即执行的函数包裹起来。eslint: [`wrap-iife`](http://eslint.cn/docs/rules/wrap-iife)
+  - [7.2](#functions--iife) 把需要立即执行的函数包裹起来（包裹 function 表达式）。eslint: [`wrap-iife`](http://eslint.cn/docs/rules/wrap-iife)
 
     ```javascript
     // 立即调用的函数表达式 (IIFE)

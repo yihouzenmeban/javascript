@@ -50,6 +50,9 @@
 `format_on_save` 可以自行设置是否保存的时候自动进行格式化整理，别的选项是目前咱们固定的，请不要修改。
 我们也可以使用快捷键进行格式化整理，默认快捷键 Windows 使用 `ctrl+alt+f`, Mac 使用 `control+alt+f`。
 
+
+大家一定确认一下自己的 Sublime 配置 `View->Line Endings` 中 `Unix` 处于选中状态。
+
 另外，建议大家在 Sublime 的配置文件中加上以下配置信息：
 
 ```javascript

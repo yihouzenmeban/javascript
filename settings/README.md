@@ -65,6 +65,8 @@
 ```
 
 # Webstorm
+Webstorm 用户一定请确认 `File->Line Separators` 中 `LF - Unix and OS X(\n)` 处于选中或者置灰状态。
+
 尝试了多种导入导出办法，一直没法成功，所以只能麻烦大家自己手动一个个点了。。感谢截图提供者及设计师[阴璐斌同学](https://github.com/yinlubin1989)。
 
 配置修改位置：`Preferences->Editor->Code Style->Javascript`

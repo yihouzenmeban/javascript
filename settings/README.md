@@ -1,3 +1,6 @@
+# Git
+首先在命令行运行 `git config -l`，如果出现的结果里面没有 `core.autocrlf=input`，在命令行输入运行 `git config --global core.autocrlf input`。
+
 # Sublime
 ### 介绍
 [JsFormat](https://github.com/jdc0589/JsFormat) 是 Sublime 上用于格式化 js 的插件。

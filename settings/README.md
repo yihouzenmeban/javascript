@@ -1,5 +1,9 @@
 # Git
-首先在命令行运行 `git config -l`，如果出现的结果里面没有 `core.autocrlf=input`，在命令行输入运行 `git config --global core.autocrlf input`。
+首先在命令行运行 `git config -l`。
+
+macOS 用户出现的结果里面如果没有 `core.autocrlf=input`，在命令行输入运行 `git config --global core.autocrlf input`。
+
+windows 用户出现的结果里面如果没有 `core.autocrlf=true`，在命令行输入运行 `git config --global core.autocrlf true`。
 
 # Sublime
 ### 介绍

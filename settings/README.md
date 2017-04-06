@@ -16,8 +16,6 @@ windows 用户出现的结果里面如果没有 `core.autocrlf=true`，在命令
 
 ![jsformat_02](https://ww1.sinaimg.cn/large/006tKfTcly1fdh3pgocfkj30fm09t0th.jpg)
 
-
-
 有时候会提示下图，是因为网络原因，可以使用 vpn 再试一次，或者手动安装。
 
 ![Screen Shot 2017-03-10 at 16.54.09](https://ww2.sinaimg.cn/large/006tKfTcly1fdhuybxvuhj30bx05x0t3.jpg)
@@ -57,9 +55,6 @@ windows 用户出现的结果里面如果没有 `core.autocrlf=true`，在命令
 `format_on_save` 可以自行设置是否保存的时候自动进行格式化整理，别的选项是目前咱们固定的，请不要修改。
 我们也可以使用快捷键进行格式化整理，默认快捷键 Windows 使用 `ctrl+alt+f`, Mac 使用 `control+alt+f`。
 
-
-大家一定确认一下自己的 Sublime 配置 `View->Line Endings` 中 `Unix` 处于选中状态。
-
 另外，建议大家在 Sublime 的配置文件中加上以下配置信息：
 
 ```javascript
@@ -72,7 +67,6 @@ windows 用户出现的结果里面如果没有 `core.autocrlf=true`，在命令
 ```
 
 # Webstorm
-Webstorm 用户一定请确认 `File->Line Separators` 中 `LF - Unix and OS X(\n)` 处于选中或者置灰状态。
 
 尝试了多种导入导出办法，一直没法成功，所以只能麻烦大家自己手动一个个点了。。感谢截图提供者及设计师[阴璐斌同学](https://github.com/yinlubin1989)。
 

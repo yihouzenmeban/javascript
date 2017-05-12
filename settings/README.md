@@ -40,7 +40,7 @@ windows 用户出现的结果里面如果没有 `core.autocrlf=true`，在命令
     "comma_first": false,
     "keep_array_indentation": false,
     "keep_function_indentation": false,
-    "wrap_line_length": 100,
+    "wrap_line_length": 120,
     "break_chained_methods": false,
     "unescape_strings": false,
     "end_with_newline": true,
@@ -61,8 +61,8 @@ windows 用户出现的结果里面如果没有 `core.autocrlf=true`，在命令
 {
     "default_line_ending": "unix", // 使用 unix 的 LF 换行符进行换行
     "word_wrap": true, // 自动折行
-    "wrap_width": 100, // 超过 100 个字符串自动折行，ps：用于配合我们的规则，字符串不用换行。
-    "rulers": [100], // 编辑器出现 100 个字符串位置的基准线，用作提醒写函数语句时注意换行。
+    "wrap_width": 120, // 超过 100 个字符串自动折行，ps：用于配合我们的规则，字符串不用换行。
+    "rulers": [120], // 编辑器出现 100 个字符串位置的基准线，用作提醒写函数语句时注意换行。
 }
 ```
 

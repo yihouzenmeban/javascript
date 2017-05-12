@@ -59,6 +59,10 @@ windows 用户出现的结果里面如果没有 `core.autocrlf=true`，在命令
 
 ```javascript
 {
+    "tab_size": 4,  // tab 为四个空格
+    "translate_tabs_to_spaces": true, // tab 转为空格
+    "trim_trailing_white_space_on_save": true, // 保存时自动去除行末多余空格
+    "ensure_newline_at_eof_on_save": true, // 保存时文件末尾自动添加空行
     "default_line_ending": "unix", // 使用 unix 的 LF 换行符进行换行
     "word_wrap": true, // 自动折行
     "wrap_width": 120, // 超过 100 个字符串自动折行，ps：用于配合我们的规则，字符串不用换行。

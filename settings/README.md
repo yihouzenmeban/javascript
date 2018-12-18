@@ -65,8 +65,8 @@ windows 用户出现的结果里面如果没有 `core.autocrlf=true`，在命令
     "ensure_newline_at_eof_on_save": true, // 保存时文件末尾自动添加空行
     "default_line_ending": "unix", // 使用 unix 的 LF 换行符进行换行
     "word_wrap": true, // 自动折行
-    "wrap_width": 120, // 超过 100 个字符串自动折行，ps：用于配合我们的规则，字符串不用换行。
-    "rulers": [120], // 编辑器出现 100 个字符串位置的基准线，用作提醒写函数语句时注意换行。
+    "wrap_width": 120, // 超过 120 个字符串自动折行，ps：用于配合我们的规则，字符串不用换行。
+    "rulers": [120], // 编辑器出现 120 个字符串位置的基准线，用作提醒写函数语句时注意换行。
 }
 ```
 
@@ -77,5 +77,45 @@ windows 用户出现的结果里面如果没有 `core.autocrlf=true`，在命令
 配置修改位置：`Preferences->Editor->Code Style->Javascript`
 
 ![未标题-2](https://ww3.sinaimg.cn/large/006tKfTcly1fdhkm20reyj30ux0x9dmo.jpg)
+
+# Vscode
+### 介绍
+[ESlint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) 是 VS Code 上用于检查提示代码一致性和格式化 javascript 的插件。
+
+### 安装
+直接点击 [ESlint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) 里面的 install 按钮下载安装, 或者用内置插件下载功能搜索下载安装。
+
+第一种: 点击 install 按钮下载安装
+
+![ESlint1.1](https://ws4.sinaimg.cn/large/006tNbRwly1fyasr2ejx0j31cy0ccq4w.jpg)
+
+第二种 用内置插件下载功能下载安装
+1. 第一步
+
+![ESlint2.1](https://ws1.sinaimg.cn/large/006tNbRwly1fyasrtolq5j30x20fujub.jpg)
+
+2. 第二步
+
+![ESlint2.2](https://ws2.sinaimg.cn/large/006tNbRwly1fyass797u9j30e008mdgb.jpg)
+
+### 配置
+
+配置文件在 `Code->Preferences->Settings` 下。搜索 eslint, 点击 `Edit in setting.json`, 如下图所示:
+
+![setting](https://ws2.sinaimg.cn/large/006tNbRwly1fyasskskb3j30r00eeq5u.jpg)
+
+然后再配置文件中添加以下信息:
+
+```javascript
+"eslint.options": {
+    "configFile": "/Users/liwei/work/static/grunt-tools/eslint-conf/es6.js" // 注意该配置文件路径为 static 下的 grunt-tools/eslint-conf/es6.js, 需要自行替换成自己电脑中的绝对路径
+}
+```
+
+ps: 由于目前只支持配置单种配置文件检测, 所以目前只配置了 es6 的检测和格式化, 所以不建议开启保存自动格式化, 建议手动触发格式化。快捷键是 `shift+alt+F`。
+
+![format](https://ws3.sinaimg.cn/large/006tNbRwly1fyassvgd3rj30xa08agn1.jpg)
+
+对于从 Sublime 迁移到 VS Code 的用户, 强烈建议使用 [Sublime Text Keymap and Settings Importer](https://marketplace.visualstudio.com/items?itemName=ms-vscode.sublime-keybindings), 在 VS Code 上使用 Sublime 的快捷键设置规则。无痛切换。
 
 大家碰到有什么格式化出现的问题，联系我哈。。

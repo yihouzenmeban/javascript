@@ -1,10 +1,7 @@
-# Airbnb JavaScript Style Guide() {
-
 **用更合理的方式写 JavaScript**
 
-ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-style-guide/blob/master/es5/README.md)，[版本二](https://github.com/adamlu/javascript-style-guide)。
-
 翻译自 [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript) 。
+根据咱们自己项目所用的规则有删减和修改, 每条后面带 `已删除` 标签的表示经过投票已经删除。
 
 <a name="table-of-contents"></a>
 ## 目录
@@ -35,16 +32,7 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
   1. [事件](#events)
   1. [jQuery](#jquery)
   1. [ECMAScript 5 兼容性](#ecmascript-5-compatibility)
-  1. [ECMAScript 6 (ES 2015+) 编码规范](#ecmascript-6-es-2015-styles)
-  1. [测试](#testing)
-  1. [性能](#performance)
-  1. [资源](#resources)
-  1. [使用人群](#in-the-wild)
-  1. [翻译](#translation)
-  1. [JavaScript 编码规范说明](#the-javascript-style-guide-guide)
-  1. [一起来讨论 JavaScript](#chat-with-us-about-javascript)
-  1. [Contributors](#contributors)
-  1. [License](#license)
+  1. [编辑器配置格式化](SETTING.md)
 
 <a name="types"></a>
 ##  类型
@@ -52,9 +40,9 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
   <a name="types--primitives"></a><a name="1.1"></a>
   - [1.1](#types--primitives) **基本类型**: 直接存取基本类型。
 
-    + `字符串`
-    + `数值`
-    + `布尔类型`
+    + `string`
+    + `number`
+    + `boolean`
     + `null`
     + `undefined`
 
@@ -70,9 +58,9 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
   <a name="types--complex"></a><a name="1.2"></a>
   - [1.2](#types--complex) **复杂类型**: 通过引用的方式存取复杂类型。
 
-    + `对象`
-    + `数组`
-    + `函数`
+    + `object`
+    + `array`
+    + `function`
 
     ```javascript
     const foo = [1, 2];
@@ -154,7 +142,7 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
   <a name="es6-computed-properties"></a><a name="3.2"></a>
   - [3.2](#3.2) 创建有动态属性名的对象时，使用可被计算的属性名称。
 
-    > 为什么？因为这样可以让你在一个地方定义所有的对象属性。
+    > 为什么？因为这样可以让你一次定义所有的对象属性。
 
     ```javascript
     function getKey(k) {
@@ -481,7 +469,7 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
     ```
 
   <a name="strings--line-length"></a><a name="6.2"></a>
-  - [6.2](#strings--line-length) 字符串超过 100 个字节不要使用字符串连接符写成多行。
+  - [6.2](#strings--line-length) 字符串超过 120 个字节不要使用字符串连接符写成多行。
 
     > 为什么? 拆成多行的字符串很难维护而且不易于搜索。
 
@@ -551,7 +539,7 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
 ## 函数
 
   <a name="functions--declarations"></a><a name="7.1"></a>
-  - [7.1](#functions--declarations) 使用函数表达式代替函数声明。
+  - ~~[7.1](#functions--declarations) 使用函数表达式代替函数声明。~~ `已删除`
 
     > 为什么？函数声明会把整个函数提升（hoisted），这意味着我们很容易在函数定义的位置之前去引用这个函数，会影响到代码的可维护性和可读性。
 
@@ -677,7 +665,7 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
     ```
 
   <a name="functions--defaults-last"></a><a name="7.9"></a>
-  - [7.9](#functions--defaults-last) 把默认的参数放在最后面。
+  - [7.9](#functions--defaults-last) 把有默认值的参数放在最后面。
 
     ```javascript
     // bad
@@ -726,7 +714,7 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
     ```
 
   <a name="functions--mutate-params"></a><a name="7.12"></a>
-  - ~~[7.12](#functions--mutate-params) 永远不要操作参数。eslint: [`no-param-reassign`](http://eslint.cn/docs/rules/no-param-reassign)~~
+  - ~~[7.12](#functions--mutate-params) 永远不要操作参数。eslint: [`no-param-reassign`](http://eslint.cn/docs/rules/no-param-reassign)~~ `已删除`
 
     > 为什么？对函数参数中的变量进行操作可能会误导读者，导致混乱，也会改变 `arguments` 对象。
 
@@ -1096,7 +1084,7 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
 **[⬆ 返回目录](#table-of-contents)**
 
 <a name="modules"></a>
-## 模块
+## 模块 `咱们项目目前使用的是 seajs, 不支持 import 方式引用模块`
 
   <a name="modules--use-them"></a><a name="10.1"></a>
   - [10.1](#modules--use-them) 总是使用 (`import`/`export`) 而不是其他非标准模块系统。你可以编译为你喜欢的模块系统。
@@ -1526,7 +1514,7 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
     ```
 
   <a name="variables--unary-increment-decrement"></a><a name="13.6"></a>
-  - ~~[13.6](#variables--unary-increment-decrement) 不要使用一元操作符 (++, --)。 eslint [`no-plusplus`](http://eslint.cn/docs/rules/no-plusplus)~~
+  - ~~[13.6](#variables--unary-increment-decrement) 不要使用一元操作符 (++, --)。 eslint [`no-plusplus`](http://eslint.cn/docs/rules/no-plusplus)~~ `已删除`
 
     > 为什么? 按照 eslint 的文档，一元操作符 `++` 和 `--` 会自动添加分号，不同的空白可能会改变源代码的语义。而且还会在项目中导致一些意外。
 
@@ -1643,7 +1631,7 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
     ```
 
   <a name="hoisting--declarations"></a><a name="14.4"></a>
-  - [14.4](#hoisting--declarations) 函数声明的名称和函数体都会被提升。
+  - [14.4](#hoisting--declarations) 声明函数的名称和函数体都会被提升。
 
     ```javascript
     function example() {
@@ -1663,14 +1651,14 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
 ## 比较运算符 & 等号
 
   <a name="comparison--eqeqeq"></a><a name="15.1"></a>
-  - ~~[15.1](#comparison--eqeqeq) 优先使用 `===` 和 `!==` 而不是 `==` 和 `!=`。eslint: [`eqeqeq`](http://eslint.cn/docs/rules/eqeqeq)~~
+  - ~~[15.1](#comparison--eqeqeq) 优先使用 `===` 和 `!==` 而不是 `==` 和 `!=`。eslint: [`eqeqeq`](http://eslint.cn/docs/rules/eqeqeq)~~ `已删除`
 
   <a name="comparison--if"></a><a name="15.2"></a>
   - [15.2](#comparison--if) 条件表达式例如 `if` 语句通过抽象方法 `ToBoolean` 强制计算它们的表达式并且总是遵守下面的规则：
 
     + **对象** 被计算为 **true**
-    + **Undefined** 被计算为 **false**
-    + **Null** 被计算为 **false**
+    + **undefined** 被计算为 **false**
+    + **null** 被计算为 **false**
     + **布尔值** 被计算为 **布尔的值**
     + **数字** 如果是 **+0、-0、或 NaN** 被计算为 **false**, 否则为 **true**
     + **字符串** 如果是空字符串 `''` 被计算为 **false**，否则为 **true**
@@ -2293,7 +2281,7 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
     ```
 
   <a name="whitespace--max-len"></a><a name="18.12"></a>
-  - [18.12](#whitespace--max-len) 单行代码不要超过 100 个字符串（空格计算在内）。注意：[above](#strings--line-length), 长字符串不遵循这条规则而且长字符串不应该被折行。eslint: [`max-len`](http://eslint.cn/docs/rules/max-len)
+  - [18.12](#whitespace--max-len) 单行代码不要超过 120 个字符串（空格计算在内, 这个是大家投票出来确定的数值）。 注意：[above](#strings--line-length), 长字符串不遵循这条规则而且长字符串不应该被折行。eslint: [`max-len`](http://eslint.cn/docs/rules/max-len)
 
     > 为什么？为了可读性和可维护性。
 
@@ -2363,7 +2351,7 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
     ```
 
   <a name="commas--dangling"></a><a name="19.2"></a>
-  - ~~[19.2](#commas--dangling) 增加结尾的逗号: **需要**。eslint: [`comma-dangle`](http://eslint.cn/docs/rules/comma-dangle)~~
+  - ~~[19.2](#commas--dangling) 增加结尾的逗号: **需要**。eslint: [`comma-dangle`](http://eslint.cn/docs/rules/comma-dangle)~~ `已删除`
 
     > ~~为什么? 这会让 git diffs 更干净。另外，像 babel 这样的转译器会移除结尾多余的逗号，也就是说你不必担心老旧浏览器的[尾逗号问题](es5/README.md#commas)。~~
 
@@ -2636,7 +2624,7 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
     ```
 
   <a name="naming--leading-underscore"></a><a name="22.4"></a>
-  - ~~[22.4](#naming--leading-underscore) 不要使用下划线 `_` 开头或者结尾进行命名。eslint: [`no-underscore-dangle`](http://eslint.cn/docs/rules/no-underscore-dangle)~~
+  - ~~[22.4](#naming--leading-underscore) 不要使用下划线 `_` 开头或者结尾进行命名。eslint: [`no-underscore-dangle`](http://eslint.cn/docs/rules/no-underscore-dangle)~~ `已删除`
 
     ```javascript
     // bad
@@ -2649,7 +2637,7 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
     ```
 
   <a name="naming--self-this"></a><a name="22.5"></a>
-  - ~~[22.5](#naming--self-this) 别保存 `this` 的引用。使用箭头函数或 [Function#bind](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind)。~~
+  - ~~[22.5](#naming--self-this) 别保存 `this` 的引用。使用箭头函数或 [Function#bind](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind)。~~ `已删除`
 
     ```javascript
     // bad
@@ -2942,247 +2930,3 @@ ES5 的编码规范请查看[版本一](https://github.com/sivan/javascript-styl
   - [26.1](#es5-compat--kangax) 参考 [Kangax](https://twitter.com/kangax/) 的 ES5 [兼容性](http://kangax.github.com/es5-compat-table/).
 
 **[⬆ 返回目录](#table-of-contents)**
-
-<a name="ecmascript-6-styles"></a>
-## ECMAScript 6 规范
-
-  <a name="es6-styles"></a><a name="27.1"></a>
-  - [27.1](#es6-styles) 以下是链接到 ES6 的各个特性的列表。
-
-    * [Arrow Functions](#arrow-functions)
-    * [Classes](#constructors)
-    * [Object Shorthand](#es6-object-shorthand)
-    * [Object Concise](#es6-object-concise)
-    * [Object Computed Properties](#es6-computed-properties)
-    * [Template Strings](#es6-template-literals)
-    * [Destructuring](#destructuring)
-    * [Default Parameters](#es6-default-parameters)
-    * [Rest](#es6-rest)
-    * [Array Spreads](#es6-array-spreads)
-    * [Let and Const](#references)
-    * [Iterators and Generators](#iterators-and-generators)
-    * [Modules](#modules)
-
-  <a name="tc39-proposals"><a name="27.2"></a>
-  - [27.2](#tc39-proposals) 不要使用还没有到达第三步的 [TC39 proposals](https://github.com/tc39/proposals)。
-
-    > 为什么? [它们还不是最终方案](https://tc39.github.io/process-document/)，可能之后会被修改。
-
-**[⬆ 返回目录](#table-of-contents)**
-
-<a name="performance"></a>
-## 性能
-
-  - [On Layout & Web Performance](http://kellegous.com/j/2013/01/26/layout-performance/)
-  - [String vs Array Concat](http://jsperf.com/string-vs-array-concat/2)
-  - [Try/Catch Cost In a Loop](http://jsperf.com/try-catch-in-loop-cost)
-  - [Bang Function](http://jsperf.com/bang-function)
-  - [jQuery Find vs Context, Selector](http://jsperf.com/jquery-find-vs-context-sel/13)
-  - [innerHTML vs textContent for script text](http://jsperf.com/innerhtml-vs-textcontent-for-script-text)
-  - [Long String Concatenation](http://jsperf.com/ya-string-concat)
-  - Loading...
-
-**[⬆ 返回目录](#table-of-contents)**
-
-<a name="resources"></a>
-## 资源
-
-**Learning ES6**
-
-  - [Draft ECMA 2015 (ES6) Spec](https://people.mozilla.org/~jorendorff/es6-draft.html)
-  - [ExploringJS](http://exploringjs.com/)
-  - [ES6 Compatibility Table](https://kangax.github.io/compat-table/es6/)
-  - [Comprehensive Overview of ES6 Features](http://es6-features.org/)
-
-**Read This**
-
-  - [Annotated ECMAScript 5.1](http://es5.github.com/)
-
-**Tools**
-
-  - Code Style Linters
-    + [ESlint](http://eslint.org/) - [Airbnb Style .eslintrc](https://github.com/airbnb/javascript/blob/master/linters/.eslintrc)
-    + [JSHint](http://www.jshint.com/) - [Airbnb Style .jshintrc](https://github.com/airbnb/javascript/blob/master/linters/jshintrc)
-    + [JSCS](https://github.com/jscs-dev/node-jscs) - [Airbnb Style Preset](https://github.com/jscs-dev/node-jscs/blob/master/presets/airbnb.json)
-
-**Other Styleguides**
-
-  - [Google JavaScript Style Guide](http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml)
-  - [jQuery Core Style Guidelines](http://docs.jquery.com/JQuery_Core_Style_Guidelines)
-  - [Principles of Writing Consistent, Idiomatic JavaScript](https://github.com/rwldrn/idiomatic.js/)
-
-**Other Styles**
-
-  - [Naming this in nested functions](https://gist.github.com/4135065) - Christian Johansen
-  - [Conditional Callbacks](https://github.com/airbnb/javascript/issues/52) - Ross Allen
-  - [Popular JavaScript Coding Conventions on Github](http://sideeffect.kr/popularconvention/#javascript) - JeongHoon Byun
-  - [Multiple var statements in JavaScript, not superfluous](http://benalman.com/news/2012/05/multiple-var-statements-javascript/) - Ben Alman
-
-**Further Reading**
-
-  - [Understanding JavaScript Closures](http://javascriptweblog.wordpress.com/2010/10/25/understanding-javascript-closures/) - Angus Croll
-  - [Basic JavaScript for the impatient programmer](http://www.2ality.com/2013/06/basic-javascript.html) - Dr. Axel Rauschmayer
-  - [You Might Not Need jQuery](http://youmightnotneedjquery.com/) - Zack Bloom & Adam Schwartz
-  - [ES6 Features](https://github.com/lukehoban/es6features) - Luke Hoban
-  - [Frontend Guidelines](https://github.com/bendc/frontend-guidelines) - Benjamin De Cock
-
-**Books**
-
-  - [JavaScript: The Good Parts](http://www.amazon.com/JavaScript-Good-Parts-Douglas-Crockford/dp/0596517742) - Douglas Crockford
-  - [JavaScript Patterns](http://www.amazon.com/JavaScript-Patterns-Stoyan-Stefanov/dp/0596806752) - Stoyan Stefanov
-  - [Pro JavaScript Design Patterns](http://www.amazon.com/JavaScript-Design-Patterns-Recipes-Problem-Solution/dp/159059908X)  - Ross Harmes and Dustin Diaz
-  - [High Performance Web Sites: Essential Knowledge for Front-End Engineers](http://www.amazon.com/High-Performance-Web-Sites-Essential/dp/0596529309) - Steve Souders
-  - [Maintainable JavaScript](http://www.amazon.com/Maintainable-JavaScript-Nicholas-C-Zakas/dp/1449327680) - Nicholas C. Zakas
-  - [JavaScript Web Applications](http://www.amazon.com/JavaScript-Web-Applications-Alex-MacCaw/dp/144930351X) - Alex MacCaw
-  - [Pro JavaScript Techniques](http://www.amazon.com/Pro-JavaScript-Techniques-John-Resig/dp/1590597273) - John Resig
-  - [Smashing Node.js: JavaScript Everywhere](http://www.amazon.com/Smashing-Node-js-JavaScript-Everywhere-Magazine/dp/1119962595) - Guillermo Rauch
-  - [Secrets of the JavaScript Ninja](http://www.amazon.com/Secrets-JavaScript-Ninja-John-Resig/dp/193398869X) - John Resig and Bear Bibeault
-  - [Human JavaScript](http://humanjavascript.com/) - Henrik Joreteg
-  - [Superhero.js](http://superherojs.com/) - Kim Joar Bekkelund, Mads Mobæk, & Olav Bjorkoy
-  - [JSBooks](http://jsbooks.revolunet.com/) - Julien Bouquillon
-  - [Third Party JavaScript](http://manning.com/vinegar/) - Ben Vinegar and Anton Kovalyov
-  - [Effective JavaScript: 68 Specific Ways to Harness the Power of JavaScript](http://amzn.com/0321812182) - David Herman
-  - [Eloquent JavaScript](http://eloquentjavascript.net/) - Marijn Haverbeke
-
-**Blogs**
-
-  - [DailyJS](http://dailyjs.com/)
-  - [JavaScript Weekly](http://javascriptweekly.com/)
-  - [JavaScript, JavaScript...](http://javascriptweblog.wordpress.com/)
-  - [Bocoup Weblog](http://weblog.bocoup.com/)
-  - [Adequately Good](http://www.adequatelygood.com/)
-  - [NCZOnline](http://www.nczonline.net/)
-  - [Perfection Kills](http://perfectionkills.com/)
-  - [Ben Alman](http://benalman.com/)
-  - [Dmitry Baranovskiy](http://dmitry.baranovskiy.com/)
-  - [Dustin Diaz](http://dustindiaz.com/)
-  - [nettuts](http://net.tutsplus.com/?s=javascript)
-
-**Podcasts**
-
-  - [JavaScript Air](https://javascriptair.com/)
-  - [JavaScript Jabber](http://devchat.tv/js-jabber/)
-
-
-**[⬆ 返回目录](#table-of-contents)**
-
-<a name="in-the-wild"></a>
-## 使用人群
-
-  This is a list of organizations that are using this style guide. Send us a pull request or open an issue and we'll add you to the list.
-
-  - **Aan Zee**: [AanZee/javascript](https://github.com/AanZee/javascript)
-  - **Adult Swim**: [adult-swim/javascript](https://github.com/adult-swim/javascript)
-  - **Airbnb**: [airbnb/javascript](https://github.com/airbnb/javascript)
-  - **American Insitutes for Research**: [AIRAST/javascript](https://github.com/AIRAST/javascript)
-  - **Apartmint**: [apartmint/javascript](https://github.com/apartmint/javascript)
-  - **Avalara**: [avalara/javascript](https://github.com/avalara/javascript)
-  - **Billabong**: [billabong/javascript](https://github.com/billabong/javascript)
-  - **Compass Learning**: [compasslearning/javascript-style-guide](https://github.com/compasslearning/javascript-style-guide)
-  - **DailyMotion**: [dailymotion/javascript](https://github.com/dailymotion/javascript)
-  - **Digitpaint** [digitpaint/javascript](https://github.com/digitpaint/javascript)
-  - **Evernote**: [evernote/javascript-style-guide](https://github.com/evernote/javascript-style-guide)
-  - **ExactTarget**: [ExactTarget/javascript](https://github.com/ExactTarget/javascript)
-  - **Expensify** [Expensify/Style-Guide](https://github.com/Expensify/Style-Guide/blob/master/javascript.md)
-  - **Flexberry**: [Flexberry/javascript-style-guide](https://github.com/Flexberry/javascript-style-guide)
-  - **Gawker Media**: [gawkermedia/javascript](https://github.com/gawkermedia/javascript)
-  - **GeneralElectric**: [GeneralElectric/javascript](https://github.com/GeneralElectric/javascript)
-  - **GoodData**: [gooddata/gdc-js-style](https://github.com/gooddata/gdc-js-style)
-  - **Grooveshark**: [grooveshark/javascript](https://github.com/grooveshark/javascript)
-  - **How About We**: [howaboutwe/javascript](https://github.com/howaboutwe/javascript)
-  - **InfoJobs**: [InfoJobs/JavaScript-Style-Guide](https://github.com/InfoJobs/JavaScript-Style-Guide)
-  - **Intent Media**: [intentmedia/javascript](https://github.com/intentmedia/javascript)
-  - **Jam3**: [Jam3/Javascript-Code-Conventions](https://github.com/Jam3/Javascript-Code-Conventions)
-  - **JSSolutions**: [JSSolutions/javascript](https://github.com/JSSolutions/javascript)
-  - **Kinetica Solutions**: [kinetica/javascript](https://github.com/kinetica/javascript)
-  - **Mighty Spring**: [mightyspring/javascript](https://github.com/mightyspring/javascript)
-  - **MinnPost**: [MinnPost/javascript](https://github.com/MinnPost/javascript)
-  - **ModCloth**: [modcloth/javascript](https://github.com/modcloth/javascript)
-  - **Money Advice Service**: [moneyadviceservice/javascript](https://github.com/moneyadviceservice/javascript)
-  - **Muber**: [muber/javascript](https://github.com/muber/javascript)
-  - **National Geographic**: [natgeo/javascript](https://github.com/natgeo/javascript)
-  - **National Park Service**: [nationalparkservice/javascript](https://github.com/nationalparkservice/javascript)
-  - **Nimbl3**: [nimbl3/javascript](https://github.com/nimbl3/javascript)
-  - **Orion Health**: [orionhealth/javascript](https://github.com/orionhealth/javascript)
-  - **Peerby**: [Peerby/javascript](https://github.com/Peerby/javascript)
-  - **Razorfish**: [razorfish/javascript-style-guide](https://github.com/razorfish/javascript-style-guide)
-  - **reddit**: [reddit/styleguide/javascript](https://github.com/reddit/styleguide/tree/master/javascript)
-  - **REI**: [reidev/js-style-guide](https://github.com/reidev/js-style-guide)
-  - **Ripple**: [ripple/javascript-style-guide](https://github.com/ripple/javascript-style-guide)
-  - **SeekingAlpha**: [seekingalpha/javascript-style-guide](https://github.com/seekingalpha/javascript-style-guide)
-  - **Shutterfly**: [shutterfly/javascript](https://github.com/shutterfly/javascript)
-  - **StudentSphere**: [studentsphere/javascript](https://github.com/studentsphere/javascript)
-  - **Target**: [target/javascript](https://github.com/target/javascript)
-  - **TheLadders**: [TheLadders/javascript](https://github.com/TheLadders/javascript)
-  - **T4R Technology**: [T4R-Technology/javascript](https://github.com/T4R-Technology/javascript)
-  - **Userify**: [userify/javascript](https://github.com/userify/javascript)
-  - **VoxFeed**: [VoxFeed/javascript-style-guide](https://github.com/VoxFeed/javascript-style-guide)
-  - **Weggo**: [Weggo/javascript](https://github.com/Weggo/javascript)
-  - **Zillow**: [zillow/javascript](https://github.com/zillow/javascript)
-  - **ZocDoc**: [ZocDoc/javascript](https://github.com/ZocDoc/javascript)
-
-**[⬆ 返回目录](#table-of-contents)**
-
-<a name="translation"></a>
-## 翻译
-
-  This style guide is also available in other languages:
-
-  - ![br](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Brazil.png) **Brazilian Portuguese**: [armoucar/javascript-style-guide](https://github.com/armoucar/javascript-style-guide)
-  - ![bg](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Bulgaria.png) **Bulgarian**: [borislavvv/javascript](https://github.com/borislavvv/javascript)
-  - ![ca](https://raw.githubusercontent.com/fpmweb/javascript-style-guide/master/img/catala.png) **Catalan**: [fpmweb/javascript-style-guide](https://github.com/fpmweb/javascript-style-guide)
-  - ![tw](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Taiwan.png) **Chinese(Traditional)**: [jigsawye/javascript](https://github.com/jigsawye/javascript)
-  - ![cn](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/China.png) **Chinese(Simplified)**: [yuche/javascript](https://github.com/yuche/javascript)
-  - ![fr](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/France.png) **French**: [nmussy/javascript-style-guide](https://github.com/nmussy/javascript-style-guide)
-  - ![de](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Germany.png) **German**: [timofurrer/javascript-style-guide](https://github.com/timofurrer/javascript-style-guide)
-  - ![it](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Italy.png) **Italian**: [sinkswim/javascript-style-guide](https://github.com/sinkswim/javascript-style-guide)
-  - ![jp](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Japan.png) **Japanese**: [mitsuruog/javacript-style-guide](https://github.com/mitsuruog/javacript-style-guide)
-  - ![kr](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/South-Korea.png) **Korean**: [tipjs/javascript-style-guide](https://github.com/tipjs/javascript-style-guide)
-  - ![pl](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Poland.png) **Polish**: [mjurczyk/javascript](https://github.com/mjurczyk/javascript)
-  - ![ru](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Russia.png) **Russian**: [uprock/javascript](https://github.com/uprock/javascript)
-  - ![es](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Spain.png) **Spanish**: [paolocarrasco/javascript-style-guide](https://github.com/paolocarrasco/javascript-style-guide)
-  - ![th](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Thailand.png) **Thai**: [lvarayut/javascript-style-guide](https://github.com/lvarayut/javascript-style-guide)
-
-<a name="the-javascript-style-guide-guide"></a>
-## JavaScript 编码规范说明
-
-  - [Reference](https://github.com/airbnb/javascript/wiki/The-JavaScript-Style-Guide-Guide)
-
-<a name="chat-with-us-about-javascript"></a>
-## 一起来讨论 JavaScript
-
-  - Find us on [gitter](https://gitter.im/airbnb/javascript).
-
-## Contributors
-
-  - [View Contributors](https://github.com/airbnb/javascript/graphs/contributors)
-
-
-## License
-
-(The MIT License)
-
-Copyright (c) 2014 Airbnb
-
-Permission is hereby granted, free of charge, to any person obtaining
-a copy of this software and associated documentation files (the
-'Software'), to deal in the Software without restriction, including
-without limitation the rights to use, copy, modify, merge, publish,
-distribute, sublicense, and/or sell copies of the Software, and to
-permit persons to whom the Software is furnished to do so, subject to
-the following conditions:
-
-The above copyright notice and this permission notice shall be
-included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
-CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
-SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-**[⬆ 返回目录](#table-of-contents)**
-
-# };

@@ -5,6 +5,46 @@ macOS 用户出现的结果里面如果没有 `core.autocrlf=input`，在命令�
 
 windows 用户出现的结果里面如果没有 `core.autocrlf=true`，在命令行输入运行 `git config --global core.autocrlf true`。
 
+# Vscode
+### 介绍
+[ESlint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) 是 VS Code 上用于检查提示代码一致性和格式化 javascript 的插件。
+
+### 安装
+直接点击 [ESlint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) 里面的 install 按钮下载安装, 或者用内置插件下载功能搜索下载安装。
+
+第一种: 点击 install 按钮下载安装
+
+![ESlint1.1](https://images.koolearn.com/fe_upload/2019/5/2019-5-8-1557303725667.jpg)
+
+第二种 用内置插件下载功能下载安装
+1. 第一步
+
+![ESlint2.1](https://images.koolearn.com/fe_upload/2019/5/2019-5-8-1557303788391.jpg)
+
+2. 第二步
+
+![ESlint2.2](https://images.koolearn.com/fe_upload/2019/5/2019-5-8-1557303832068.jpg)
+
+### 配置
+
+配置文件在 `Code->Preferences->Settings` 下。搜索 eslint, 点击 `Edit in setting.json`, 如下图所示:
+
+![setting](https://images.koolearn.com/fe_upload/2019/5/2019-5-8-1557303902170.jpg)
+
+然后再配置文件中添加以下信息:
+
+```javascript
+"eslint.options": {
+    "configFile": "/Users/liwei/work/static/grunt-tools/eslint-conf/es6.js" // 注意该配置文件路径为 static 下的 grunt-tools/eslint-conf/es6.js, 需要自行替换成自己电脑中的绝对路径
+}
+```
+
+ps: 由于目前只支持配置单种配置文件检测, 所以目前只配置了 es6 的检测和格式化, 所以不建议开启保存自动格式化, 建议手动触发格式化。快捷键是 `shift+alt+F`。
+
+![format](https://images.koolearn.com/fe_upload/2019/5/2019-5-8-1557303943843.jpg)
+
+对于从 Sublime 迁移到 VS Code 的用户, 强烈建议使用 [Sublime Text Keymap and Settings Importer](https://marketplace.visualstudio.com/items?itemName=ms-vscode.sublime-keybindings), 在 VS Code 上使用 Sublime 的快捷键设置规则。无痛切换。
+
 # Sublime
 ### 介绍
 [JsFormat](https://github.com/jdc0589/JsFormat) 是 Sublime 上用于格式化 js 的插件。
@@ -12,13 +52,13 @@ windows 用户出现的结果里面如果没有 `core.autocrlf=true`，在命令
 ### 安装
 直接使用 Package Control 进行安装。 Windows `Ctrl + Shift + p`, Mac `Command + Shift + p`呼出控制板，如果之前没有安装 Package Control，[点我](https://packagecontrol.io/installation)。
 
-![jsformat_01](https://ww3.sinaimg.cn/large/006tKfTcly1fdh3pe3vwxj30g20b5aao.jpg)
+![jsformat_01](https://images.koolearn.com/fe_upload/2019/5/2019-5-8-1557303201388.jpg)
 
-![jsformat_02](https://ww1.sinaimg.cn/large/006tKfTcly1fdh3pgocfkj30fm09t0th.jpg)
+![jsformat_02](https://images.koolearn.com/fe_upload/2019/5/2019-5-8-1557303427474.jpg)
 
 有时候会提示下图，是因为网络原因，可以使用 vpn 再试一次，或者手动安装。
 
-![Screen Shot 2017-03-10 at 16.54.09](https://ww2.sinaimg.cn/large/006tKfTcly1fdhuybxvuhj30bx05x0t3.jpg)
+![Screen Shot 2017-03-10 at 16.54.09](https://images.koolearn.com/fe_upload/2019/5/2019-5-8-1557303537820.jpg)
 
 ### 配置
 
@@ -76,46 +116,6 @@ windows 用户出现的结果里面如果没有 `core.autocrlf=true`，在命令
 
 配置修改位置：`Preferences->Editor->Code Style->Javascript`
 
-![未标题-2](https://ww3.sinaimg.cn/large/006tKfTcly1fdhkm20reyj30ux0x9dmo.jpg)
-
-# Vscode
-### 介绍
-[ESlint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) 是 VS Code 上用于检查提示代码一致性和格式化 javascript 的插件。
-
-### 安装
-直接点击 [ESlint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) 里面的 install 按钮下载安装, 或者用内置插件下载功能搜索下载安装。
-
-第一种: 点击 install 按钮下载安装
-
-![ESlint1.1](https://ws4.sinaimg.cn/large/006tNbRwly1fyasr2ejx0j31cy0ccq4w.jpg)
-
-第二种 用内置插件下载功能下载安装
-1. 第一步
-
-![ESlint2.1](https://ws1.sinaimg.cn/large/006tNbRwly1fyasrtolq5j30x20fujub.jpg)
-
-2. 第二步
-
-![ESlint2.2](https://ws2.sinaimg.cn/large/006tNbRwly1fyass797u9j30e008mdgb.jpg)
-
-### 配置
-
-配置文件在 `Code->Preferences->Settings` 下。搜索 eslint, 点击 `Edit in setting.json`, 如下图所示:
-
-![setting](https://ws2.sinaimg.cn/large/006tNbRwly1fyasskskb3j30r00eeq5u.jpg)
-
-然后再配置文件中添加以下信息:
-
-```javascript
-"eslint.options": {
-    "configFile": "/Users/liwei/work/static/grunt-tools/eslint-conf/es6.js" // 注意该配置文件路径为 static 下的 grunt-tools/eslint-conf/es6.js, 需要自行替换成自己电脑中的绝对路径
-}
-```
-
-ps: 由于目前只支持配置单种配置文件检测, 所以目前只配置了 es6 的检测和格式化, 所以不建议开启保存自动格式化, 建议手动触发格式化。快捷键是 `shift+alt+F`。
-
-![format](https://ws3.sinaimg.cn/large/006tNbRwly1fyassvgd3rj30xa08agn1.jpg)
-
-对于从 Sublime 迁移到 VS Code 的用户, 强烈建议使用 [Sublime Text Keymap and Settings Importer](https://marketplace.visualstudio.com/items?itemName=ms-vscode.sublime-keybindings), 在 VS Code 上使用 Sublime 的快捷键设置规则。无痛切换。
+![未标题-2](https://images.koolearn.com/fe_upload/2019/5/2019-5-8-1557303625000.jpg)
 
 大家碰到有什么格式化出现的问题，联系我哈。。
